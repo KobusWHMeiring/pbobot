@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}NPO Structure Selector - PBOBot{% endblock title %}
+
+{% block content %}
+<div class="content-wrapper">
+
+    <!-- Screen 1: Explainer -->
+    <div id="explainer-screen">
+        <div class="intro-section" style="text-align: center; margin-bottom: 2rem;">
+            <h1 class="content-heading">Which Non-Profit Structure is Right for You?</h1>
+            <p class="content-paragraph">This tool will help you decide between a Voluntary Association, a Non-Profit Company, and a Trust.</p>
+        </div>
+        
+        <!-- You can add info cards here similar to your example if you wish -->
+
+        <div style="display: flex; justify-content: center;">
+            <button id="proceed-to-qualifier-button" class="btn btn-primary btn-large">Start the Selector</button>
+        </div>
+    </div>
+
+    <!-- Screen 2: Qualifier -->
+    <div id="qualifier-screen" style="display: none;">
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <h1 class="content-heading">Structure Selector Tool</h1>
+            <p class="content-paragraph">Answer the following questions to get your recommendation.</p>
+        </div>
+        <form id="structure-qualifier-form" style="display: flex; flex-direction: column; gap: 2rem;">
+            {% csrf_token %}
+            
+            <!-- Question 1: Liability -->
+            <div>
+                <h3 class="step-content title">1. Do you need a separate legal identity to sign contracts or limit founders' personal liability?</h3>
+                <div style="display: flex; gap: 1rem; margin-top: 0.5rem;">
+                    <label><input type="radio" name="liability" value="yes" required> Yes</label>
+                    <label><input type="radio" name="liability" value="no"> No</label>
+                </div>
+            </div>
+
+            <!-- Question 2: Purpose -->
+            <div>
+                <h3 class="step-content title">2. What is the MAIN purpose of your organization?</h3>
+                <div style="display: flex; gap: 1rem; margin-top: 0.5rem;">
+                    <label><input type="radio" name="purpose" value="operations" required> Running active programs & projects</label>
+                    <label><input type="radio" name="purpose" value="assets"> Mainly owning/managing assets (e.g., property)</label>
+                </div>
+            </div>
+
+            <!-- Question 3: Simplicity -->
+            <div>
+                <h3 class="step-content title">3. How important is a quick, simple, and low-cost setup?</h3>
+                <div style="display: flex; gap: 1rem; margin-top: 0.5rem;">
+                    <label><input type="radio" name="simplicity" value="very" required> Very Important</label>
+                    <label><input type="radio" name="simplicity" value="not"> Not a priority, formality is better</label>
+                </div>
+            </div>
+
+            <!-- Question 4: Membership -->
+            <div>
+                <h3 class="step-content title">4. Will you have a large, open public membership with voting rights?</h3>
+                <div style="display: flex; gap: 1rem; margin-top: 0.5rem;">
+                    <label><input type="radio" name="membership" value="yes" required> Yes</label>
+                    <label><input type="radio" name="membership" value="no"> No, it will be run by a board/committee</label>
+                </div>
+            </div>
+            
+            <div style="display: flex; justify-content: center; margin-top: 1rem;">
+                <button type="submit" class="btn btn-primary btn-large">Get Recommendation</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Screen 3: Results -->
+    <div id="results-screen" style="display: none;">
+        <div style="background-color: #f0f2f5; padding: 2rem; border-radius: 8px; text-align: center;">
+            <h3 style="font-size: 1rem; color: #60748a; margin-bottom: 0.5rem;">OUR RECOMMENDATION</h3>
+            <h1 class="content-heading" style="padding: 0;" id="result-title"></h1>
+            <p class="content-paragraph" style="padding-top: 0.5rem;" id="result-description"></p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr; gap: 2rem; margin-top: 2rem; @media (min-width: 768px) { grid-template-columns: 1fr 1fr; }">
+            <div>
+                <h3 class="content-heading" style="padding: 0 0 1rem 0;">✅ Pros</h3>
+                <ul id="result-pros" style="list-style-type: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem;"></ul>
+            </div>
+            <div>
+                <h3 class="content-heading" style="padding: 0 0 1rem 0;">⚠️ Cons</h3>
+                <ul id="result-cons" style="list-style-type: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem;"></ul>
+            </div>
+        </div>
+        
+        <div class="final-cta-container" style="margin-top: 2rem; display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+             <a href="#" id="result-checklist-link" class="btn btn-primary btn-large">
+                <span class="truncate">View Registration Checklist</span>
+            </a>
+            <button id="start-over-button" class="btn btn-secondary">Start Over</button>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block extra_scripts %}
+    <script>
+        window.APP_CONFIG = {{ app_config_json|safe }};
+    </script>
+    <script src="{% static 'pboapp/js/structure_selector.js' %}"></script>
+{% endblock %}
