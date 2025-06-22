@@ -1,11 +1,93 @@
+<!-- pages/templates/pages/home.html -->
 {% extends "base.html" %}
 
-{% block title %}Welcome - Amicus NPO Launchpad{% endblock title %}
+{% block title %}Empowering Non-Profits in SA - PBOBot{% endblock title %}
 
 {% block content %}
-<div>
-    <h2>Starting a Non-Profit in South Africa?</h2>
-    <p>Get your free, clear action plan in minutes.</p>
-    <a href="#">Find the Right Structure</a>
+<div class="content-wrapper">
+    <div class="hero-container-wrapper">
+        <div class="hero-padding">
+            <div class="hero-section">
+                <div class="hero-text">
+                    <h1 class="hero-title">Empowering Non-Profit Organizations in South Africa</h1>
+                    <h2 class="hero-subtitle">
+                        PBOBot is your comprehensive guide to understanding, registering, and managing your non-profit organization in South Africa. We provide step-by-step assistance to ensure your NPO is compliant and effective.
+                    </h2>
+                </div>
+                <button class="btn btn-primary btn-large">
+                    <span class="truncate">Get Started</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <h2 class="content-heading">What is an NPO?</h2>
+    <p class="content-paragraph">
+        A Non-Profit Organization (NPO) in South Africa is a registered entity that operates for the benefit of the public or a specific group, without the primary aim of making a profit. NPOs play a crucial role in addressing social, cultural, and environmental issues, contributing significantly to the country's development.
+    </p>
+
+    <h2 class="content-heading">Why are NPOs Important in South Africa?</h2>
+    <p class="content-paragraph">
+        NPOs are vital for community development, providing essential services, advocating for social change, and promoting inclusivity. They often fill gaps where government and private sectors may fall short, addressing diverse needs across the nation.
+    </p>
+
+    <h2 class="content-heading">Registration and Compliance Steps</h2>
+    <div class="steps-grid">
+        <!-- Step 1 -->
+        <div class="step-timeline">
+            <div class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256"><path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path></svg>
+            </div>
+            <div class="line"></div>
+        </div>
+        <div class="step-content">
+            <p class="title">Understanding NPO Requirements</p>
+            <p class="description">Learn about the legal and regulatory framework for NPOs in South Africa.</p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="step-timeline">
+            <div class="line top-line"></div>
+            <div class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256"><path d="M213.66,82.34l-56-56A8,8,0,0,0,152,24H56A16,16,0,0,0,40,40V216a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V88A8,8,0,0,0,213.66,82.34ZM160,51.31,188.69,80H160ZM200,216H56V40h88V88a8,8,0,0,0,8,8h48V216Z"></path></svg>
+            </div>
+            <div class="line"></div>
+        </div>
+        <div class="step-content">
+            <p class="title">Preparing Your Application</p>
+            <p class="description">Gather necessary documents, including your constitution and founding documents.</p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="step-timeline">
+            <div class="line top-line"></div>
+            <div class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256"><path d="M227.32,28.68a16,16,0,0,0-15.66-4.08l-.15,0L19.57,82.84a16,16,0,0,0-2.42,29.84l85.62,40.55,40.55,85.62A15.86,15.86,0,0,0,157.74,248q.69,0,1.38-.06a15.88,15.88,0,0,0,14-11.51l58.2-191.94c0-.05,0-.1,0-.15A16,16,0,0,0,227.32,28.68ZM157.83,231.85l-.05.14L118.42,148.9l47.24-47.25a8,8,0,0,0-11.31-11.31L107.1,137.58,24,98.22l.14,0L216,40Z"></path></svg>
+            </div>
+            <div class="line"></div>
+        </div>
+        <div class="step-content">
+            <p class="title">Submitting Your Application</p>
+            <p class="description">Submit your application to the Department of Social Development.</p>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="step-timeline">
+            <div class="line top-line"></div>
+            <div class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256"><path d="M208,40H48A16,16,0,0,0,32,56v58.78c0,89.61,75.82,119.34,91,124.39a15.53,15.53,0,0,0,10,0c15.2-5.05,91-34.78,91-124.39V56A16,16,0,0,0,208,40Zm0,74.79c0,78.42-66.35,104.62-80,109.18-13.53-4.51-80-30.69-80-109.18V56H208ZM82.34,141.66a8,8,0,0,1,11.32-11.32L112,148.68l50.34-50.34a8,8,0,0,1,11.32,11.32l-56,56a8,8,0,0,1-11.32,0Z"></path></svg>
+            </div>
+            <div class="line bottom-line"></div>
+        </div>
+        <div class="step-content">
+            <p class="title">Ongoing Compliance</p>
+            <p class="description">Ensure your NPO remains compliant with annual reporting and governance requirements.</p>
+        </div>
+    </div>
+    <div class="final-cta-container">
+        <button class="btn btn-primary btn-large">
+            <span class="truncate">Explore Registration Process</span>
+        </button>
+    </div>
 </div>
 {% endblock content %}

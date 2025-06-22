@@ -1,29 +1,51 @@
+<!-- templates/base.html -->
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Amicus NPO Launchpad{% endblock title %}</title>
-    <!-- We will create this CSS file later -->
+    <title>{% block title %}PBOBot{% endblock title %}</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?display=swap&family=Noto+Sans:wght@400;500;700;900&family=Public+Sans:wght@400;500;700;900">
+    
+    <!-- Our Stylesheet -->
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
 </head>
 <body>
-    <header>
-        <!-- A simple navbar can go here later -->
-        <h1><a href="{% url 'home' %}">Amicus NPO</a></h1>
-    </header>
+    <div class="layout-container">
+        <header class="site-header">
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z" fill="currentColor"></path></svg>
+                </div>
+                <h2 class="logo-text">PBOBot</h2>
+            </div>
+            <nav class="header-nav">
+                <div class="nav-links">
+                    <a href="#">Home</a>
+                    <a href="#">Registration</a>
+                    <a href="#">Compliance</a>
+                    <a href="#">Resources</a>
+                    <a href="#">Contact</a>
+                </div>
+                <div class="header-actions">
+                    <button class="btn btn-primary"><span class="truncate">Login</span></button>
+                    <button class="btn btn-secondary"><span class="truncate">Sign Up</span></button>
+                </div>
+            </nav>
+        </header>
 
-    <main>
-        {% block content %}
-        <!-- Content from other templates will be injected here -->
-        {% endblock content %}
-    </main>
+        <main class="main-content">
+            {% block content %}
+            <!-- Page-specific content will be injected here -->
+            {% endblock content %}
+        </main>
 
-    <footer>
-        <p>© {% now "Y" %} Amicus NPO. All rights reserved.</p>
-        <!-- We will create these pages later -->
-        <!-- <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a> -->
-    </footer>
+        <!-- A proper footer can be added here later -->
+
+    </div>
 </body>
 </html>
