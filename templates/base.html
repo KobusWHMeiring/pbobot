@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Amicus NPO Launchpad{% endblock title %}</title>
+    <!-- We will create this CSS file later -->
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<body>
+    <header>
+        <!-- A simple navbar can go here later -->
+        <h1><a href="{% url 'home' %}">Amicus NPO</a></h1>
+    </header>
+
+    <main>
+        {% block content %}
+        <!-- Content from other templates will be injected here -->
+        {% endblock content %}
+    </main>
+
+    <footer>
+        <p>© {% now "Y" %} Amicus NPO. All rights reserved.</p>
+        <!-- We will create these pages later -->
+        <!-- <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a> -->
+    </footer>
+</body>
+</html>
