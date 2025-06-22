@@ -3,98 +3,146 @@
 
 {% block title %}NPO Structure Selector - PBOBot{% endblock title %}
 
+{% block page_specific_css %}
+    <link rel="stylesheet" href="{% static 'pboapp/css/structure_selector.css' %}">
+{% endblock %}
+
 {% block content %}
 <div class="content-wrapper">
 
     <!-- Screen 1: Explainer -->
-    <div id="explainer-screen">
-        <div class="intro-section" style="text-align: center; margin-bottom: 2rem;">
-            <h1 class="content-heading">Which Non-Profit Structure is Right for You?</h1>
-            <p class="content-paragraph">This tool will help you decide between a Voluntary Association, a Non-Profit Company, and a Trust.</p>
+    <div id="explainer-screen" class="tool-container">
+        <div class="explainer-intro">
+            <h1 class="explainer-title">Which Non-Profit Structure is Right for You?</h1>
+            <p class="explainer-subtitle">This tool helps you choose the best legal structure for your non-profit in South Africa by comparing the three main options. Answer a few questions to get a tailored recommendation.</p>
         </div>
         
-        <!-- You can add info cards here similar to your example if you wish -->
+        <div class="info-grid">
+            <!-- Info Card 1 -->
+            <div class="info-card">
+                <h3 class="info-card-heading">Non-Profit Company (NPC)</h3>
+                <p class="info-card-description">A formal legal entity registered with CIPC. It offers the strongest liability protection for its directors and is often preferred by formal funders and for signing contracts.</p>
+            </div>
+            <!-- Info Card 2 -->
+            <div class="info-card">
+                <h3 class="info-card-heading">Charitable Trust</h3>
+                <p class="info-card-description">A legal structure for managing long-term assets like property or investments. It is registered with the Master of the High Court and managed by trustees.</p>
+            </div>
+            <!-- Info Card 3 -->
+            <div class="info-card">
+                <h3 class="info-card-heading">Voluntary Association (VA)</h3>
+                <p class="info-card-description">The simplest, most flexible structure based on a constitution signed by members. It's fast to set up and ideal for community-based or member-driven initiatives.</p>
+            </div>
+        </div>
 
-        <div style="display: flex; justify-content: center;">
-            <button id="proceed-to-qualifier-button" class="btn btn-primary btn-large">Start the Selector</button>
+        <div class="explainer-cta-wrapper">
+            <button id="proceed-to-qualifier-button" class="btn-primary-style">Start the Selector</button>
         </div>
     </div>
 
     <!-- Screen 2: Qualifier -->
     <div id="qualifier-screen" style="display: none;">
-        <div style="text-align: center; margin-bottom: 2rem;">
-            <h1 class="content-heading">Structure Selector Tool</h1>
-            <p class="content-paragraph">Answer the following questions to get your recommendation.</p>
+        <div class="qualifier-form-container">
+            <div class="qualifier-header">
+                <h1 class="qualifier-title">Structure Selector Tool</h1>
+                <p class="qualifier-description">Answer these four questions to get your recommendation.</p>
+            </div>
+            <form id="structure-qualifier-form" class="qualifier-form">
+                {% csrf_token %}
+                
+                <!-- Question 1: Liability -->
+                <div>
+                    <h3 class="form-section-title">1. Do you need a separate legal identity to sign contracts or limit founders' personal liability?</h3>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="liability" value="yes" required class="radio-custom">
+                            <span class="radio-label-text">Yes, limiting personal liability is a top priority.</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="liability" value="no" class="radio-custom">
+                            <span class="radio-label-text">No, this is not a major concern right now.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Question 2: Purpose -->
+                <div>
+                    <h3 class="form-section-title">2. What is the MAIN purpose of your organization?</h3>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="purpose" value="operations" required class="radio-custom">
+                            <span class="radio-label-text">Running active programs, services, and projects.</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="purpose" value="assets" class="radio-custom">
+                            <span class="radio-label-text">Mainly for owning and managing long-term assets (e.g., property, investments).</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Question 3: Simplicity -->
+                <div>
+                    <h3 class="form-section-title">3. How important is a quick, simple, and low-cost setup?</h3>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="simplicity" value="very" required class="radio-custom">
+                            <span class="radio-label-text">Very important. We need to get started quickly and cheaply.</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="simplicity" value="not" class="radio-custom">
+                            <span class="radio-label-text">Not a priority. Formality and credibility are more important.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Question 4: Membership -->
+                <div>
+                    <h3 class="form-section-title">4. Will you have a large, open public membership with voting rights?</h3>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="membership" value="yes" required class="radio-custom">
+                            <span class="radio-label-text">Yes, it's a member-driven organization (like a club or forum).</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="membership" value="no" class="radio-custom">
+                            <span class="radio-label-text">No, it will be run by a board of directors or committee.</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary-style">Get Recommendation</button>
+                </div>
+            </form>
         </div>
-        <form id="structure-qualifier-form" style="display: flex; flex-direction: column; gap: 2rem;">
-            {% csrf_token %}
-            
-            <!-- Question 1: Liability -->
-            <div>
-                <h3 class="step-content title">1. Do you need a separate legal identity to sign contracts or limit founders' personal liability?</h3>
-                <div style="display: flex; gap: 1rem; margin-top: 0.5rem;">
-                    <label><input type="radio" name="liability" value="yes" required> Yes</label>
-                    <label><input type="radio" name="liability" value="no"> No</label>
-                </div>
-            </div>
-
-            <!-- Question 2: Purpose -->
-            <div>
-                <h3 class="step-content title">2. What is the MAIN purpose of your organization?</h3>
-                <div style="display: flex; gap: 1rem; margin-top: 0.5rem;">
-                    <label><input type="radio" name="purpose" value="operations" required> Running active programs & projects</label>
-                    <label><input type="radio" name="purpose" value="assets"> Mainly owning/managing assets (e.g., property)</label>
-                </div>
-            </div>
-
-            <!-- Question 3: Simplicity -->
-            <div>
-                <h3 class="step-content title">3. How important is a quick, simple, and low-cost setup?</h3>
-                <div style="display: flex; gap: 1rem; margin-top: 0.5rem;">
-                    <label><input type="radio" name="simplicity" value="very" required> Very Important</label>
-                    <label><input type="radio" name="simplicity" value="not"> Not a priority, formality is better</label>
-                </div>
-            </div>
-
-            <!-- Question 4: Membership -->
-            <div>
-                <h3 class="step-content title">4. Will you have a large, open public membership with voting rights?</h3>
-                <div style="display: flex; gap: 1rem; margin-top: 0.5rem;">
-                    <label><input type="radio" name="membership" value="yes" required> Yes</label>
-                    <label><input type="radio" name="membership" value="no"> No, it will be run by a board/committee</label>
-                </div>
-            </div>
-            
-            <div style="display: flex; justify-content: center; margin-top: 1rem;">
-                <button type="submit" class="btn btn-primary btn-large">Get Recommendation</button>
-            </div>
-        </form>
     </div>
 
     <!-- Screen 3: Results -->
     <div id="results-screen" style="display: none;">
-        <div style="background-color: #f0f2f5; padding: 2rem; border-radius: 8px; text-align: center;">
-            <h3 style="font-size: 1rem; color: #60748a; margin-bottom: 0.5rem;">OUR RECOMMENDATION</h3>
-            <h1 class="content-heading" style="padding: 0;" id="result-title"></h1>
-            <p class="content-paragraph" style="padding-top: 0.5rem;" id="result-description"></p>
-        </div>
+        <div class="results-container">
+            <div class="results-header">
+                <p class="results-header-eyebrow">OUR RECOMMENDATION</p>
+                <h1 id="result-title" class="results-title"></h1>
+                <p id="result-description" class="results-description"></p>
+            </div>
 
-        <div style="display: grid; grid-template-columns: 1fr; gap: 2rem; margin-top: 2rem; @media (min-width: 768px) { grid-template-columns: 1fr 1fr; }">
-            <div>
-                <h3 class="content-heading" style="padding: 0 0 1rem 0;">✅ Pros</h3>
-                <ul id="result-pros" style="list-style-type: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem;"></ul>
+            <div class="results-grid">
+                <div class="results-list pros">
+                    <h3 class="results-list-title">✅ Pros</h3>
+                    <ul id="result-pros"></ul>
+                </div>
+                <div class="results-list cons">
+                    <h3 class="results-list-title">⚠️ Cons</h3>
+                    <ul id="result-cons"></ul>
+                </div>
             </div>
-            <div>
-                <h3 class="content-heading" style="padding: 0 0 1rem 0;">⚠️ Cons</h3>
-                <ul id="result-cons" style="list-style-type: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem;"></ul>
+            
+            <div class="results-actions">
+                 <a href="#" id="result-checklist-link" class="btn-primary-style">
+                    <span class="truncate">View Registration Checklist</span>
+                </a>
+                <button id="start-over-button" class="btn-secondary-style">Start Over</button>
             </div>
-        </div>
-        
-        <div class="final-cta-container" style="margin-top: 2rem; display: flex; flex-direction: column; align-items: center; gap: 1rem;">
-             <a href="#" id="result-checklist-link" class="btn btn-primary btn-large">
-                <span class="truncate">View Registration Checklist</span>
-            </a>
-            <button id="start-over-button" class="btn btn-secondary">Start Over</button>
         </div>
     </div>
 </div>
