@@ -303,3 +303,44 @@
 .btn-secondary-style:hover {
     color: var(--slate-900);
 }
+
+.checklist-item-card {
+    transition: all 0.3s ease-in-out;
+    border-left: 4px solid transparent;
+}
+
+.checklist-item-card.is-complete {
+    background-color: #f0fdf4; /* A light green background */
+    border-left: 4px solid #22c55e; /* green-500 */
+}
+
+.checklist-toggle-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-right: 0.5rem; /* Give some space */
+    color: #9ca3af; /* Default pending color */
+    display: flex;
+    align-items: center;
+}
+
+.checklist-item-card.is-complete .checklist-toggle-btn {
+    color: #22c55e; /* green-500 */
+}
+
+.checklist-item-content {
+    flex-grow: 1;
+}
+
+.checklist-item-action-link .material-icons-outlined {
+    font-size: 1.25rem;
+    vertical-align: middle;
+}
+
+#compile-btn:disabled {
+    background-color: #d1d5db; /* gray-300 */
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}

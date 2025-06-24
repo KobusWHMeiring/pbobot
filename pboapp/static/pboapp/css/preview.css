@@ -1,0 +1,106 @@
+.preview-page-wrapper {
+    background-color: #525659; /* CIPC grey background */
+    padding: 2rem 1rem;
+    min-height: 100vh;
+}
+
+.preview-actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 1rem;
+    z-index: 1000;
+}
+
+/* --- A4 Page Simulation --- */
+#document-container {
+    font-family: Arial, Helvetica, sans-serif;
+    color: black;
+}
+
+.a4-page {
+    background: white;
+    width: 210mm;
+    min-height: 297mm; /* This is for screen view only */
+    margin: 0 auto 1rem auto;
+    padding: 20mm; /* Adjusted padding */
+    box-sizing: border-box;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* --- Page 1 Specific Layout --- */
+.page-1-grid {
+    display: grid;
+    grid-template-columns: 2fr 5fr;
+    gap: 15px;
+    /* REMOVED height: 100%; to allow content to dictate height */
+}
+
+.sidebar {
+    border-right: 2px solid black;
+    padding-right: 15px;
+    font-size: 8pt;
+}
+.sidebar h3, .sidebar h4 { font-weight: bold; margin: 0 0 1em 0; }
+.sidebar h3 { font-size: 11pt; }
+.sidebar h4 { font-size: 10pt; line-height: 1.2; }
+.sidebar ul { list-style-type: disc; padding-left: 1.2em; margin-bottom: 1em;}
+.sidebar ul li { margin-bottom: 0.8em; line-height: 1.3; }
+.sidebar .alpha-list-bare { list-style-type: none; padding-left: 1.2em; }
+
+.contact-box { border: 1px solid black; padding: 0.5em; text-align: center; }
+.contact-box h5 { font-weight: bold; font-size: 9pt; margin: 0 0 0.5em 0; }
+.contact-box p { margin: 0; line-height: 1.3; }
+
+.main-content { font-size: 10pt; line-height: 1.4; }
+.doc-header { text-align: center; border-bottom: 2px solid black; padding-bottom: 10px; margin-bottom: 15px;}
+.doc-header h4 { font-size: 11pt; margin: 0; }
+.doc-header h5 { font-size: 10pt; margin: 0; }
+.doc-header h2 { font-size: 12pt; font-weight: bold; margin: 1em 0 0.5em 0; }
+.doc-header p { margin: 1em 0 0 0; }
+
+.data-field {
+    border: 1px solid #aaa;
+    padding: 4px 8px;
+    min-height: 24px;
+    display: inline-block;
+    vertical-align: bottom;
+    font-style: italic;
+    color: #0056b3;
+    background-color: #f8f9fa;
+}
+.large-field { display: block; text-align: center; padding: 10px; font-weight: bold; font-size: 11pt; }
+.large-textarea { display: block; min-height: 80px; white-space: pre-wrap; word-wrap: break-word; text-align: left; }
+
+.main-content section { margin-bottom: 15px; }
+.main-content section h4 { font-weight: bold; text-decoration: underline; margin-bottom: 1em; font-size: 10pt; }
+
+.incorporators-table { width: 100%; border-collapse: collapse; font-size: 9pt; }
+.incorporators-table th, .incorporators-table td { border: 1px solid black; padding: 5px; text-align: left; vertical-align: top; }
+.incorporators-table th { font-weight: bold; text-align: center; }
+.incorporators-table td { min-height: 35px; }
+
+.doc-footer { font-size: 8pt; margin-top: 2em; text-align: center; }
+
+/* --- General Content Styling (Pages 2 & 3) --- */
+.a4-page h4 { font-size: 12pt; font-weight: bold; margin: 1.5em 0 1em 0; text-decoration: underline;}
+.a4-page h5 { font-size: 11pt; font-weight: bold; margin: 1em 0; }
+.a4-page p { margin-bottom: 1em; line-height: 1.5; }
+.a4-page ol { padding-left: 2.5em; list-style-position: outside; }
+.a4-page ol li { margin-bottom: 0.5em; }
+
+/* Custom list styling to match document */
+.numeric-list { list-style-type: none; counter-reset: item; }
+.numeric-list > li { counter-increment: item; }
+.numeric-list > li::before { content: "(" counter(item) ") "; font-weight: normal; margin-left: -2.5em; position: absolute; }
+
+.alpha-list { list-style-type: none; counter-reset: item; }
+.alpha-list > li { counter-increment: item; }
+.alpha-list > li::before { content: "(" counter(item, lower-alpha) ") "; font-weight: normal; margin-left: -2.5em; position: absolute; }

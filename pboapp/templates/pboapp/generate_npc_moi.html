@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}MOI Generator (CoR 15.1C) - PBOBot{% endblock title %}
+
+{% block content %}
+<div class="content-wrapper">
+    <div class="form-card">
+        <h1 class="form-title">Memorandum of Incorporation (CoR 15.1C) Generator</h1>
+        <p class="form-description">Complete the fields below. The form requires a minimum of 3 incorporators/directors. The generated document will match the official CIPC form.</p>
+        
+        <form id="moi-form" novalidate data-preview-url="{% url 'pboapp:preview_npc_moi' %}">
+            
+            <fieldset class="form-section">
+                <legend>Company Details</legend>
+                <div class="form-group">
+                    <label for="company_name">Company Name (as per name reservation):</label>
+                    <input type="text" id="company_name" name="company_name" required placeholder="e.g., The Good Hope Foundation NPC">
+                    <small>Must end with "NPC".</small>
+                </div>
+                <div class="form-group">
+                    <label for="company_objects">Objects of the Company:</label>
+                    <textarea id="company_objects" name="company_objects" rows="6" required placeholder="Describe the main purpose and activities of the non-profit company."></textarea>
+                    <small>This is a statement of the public benefit objectives of your NPC.</small>
+                </div>
+            </fieldset>
+
+            <fieldset class="form-section">
+                <legend>Directors</legend>
+                <div class="form-group">
+                    <label for="director_count">Number of Directors:</label>
+                    <input type="number" id="director_count" name="director_count" required min="3" value="3">
+                    <small>An NPC must have at least 3 directors.</small>
+                </div>
+                <div class="form-group">
+                    <label for="alternate_director_count">Number of Alternate Directors:</label>
+                    <input type="number" id="alternate_director_count" name="alternate_director_count" required min="0" value="0">
+                </div>
+                <div class="form-group">
+                    <label for="director_appointment_manner">Manner of Director Appointment:</label>
+                    <textarea id="director_appointment_manner" name="director_appointment_manner" rows="4" required>Initial directors are the incorporators listed below. Subsequent directors will be appointed by a majority vote of the Board of Directors.</textarea>
+                    <small>Describe how directors are appointed. The default text is usually sufficient.</small>
+                </div>
+            </fieldset>
+
+            <fieldset class="form-section">
+                <legend>Adoption by Incorporators</legend>
+                <p class="form-description">Add the details for each of the founding incorporators. The signature fields will be left blank on the document for manual signing.</p>
+                <div id="incorporators-container">
+                    <!-- JavaScript will populate the initial 3 incorporators here -->
+                </div>
+                <button type="button" id="add-incorporator-btn" class="btn btn-secondary">
+                    <span class="material-icons-outlined">add_circle_outline</span>
+                    Add Another Incorporator
+                </button>
+            </fieldset>
+
+            <!-- Sticky Footer for Action Button -->
+            <div class="form-actions-sticky">
+                <button type="submit" id="preview-btn" class="btn btn-primary btn-large">
+                    Preview Document
+                    <span class="material-icons-outlined">visibility</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Template for a single incorporator, hidden from view -->
+<template id="incorporator-template">
+    <div class="incorporator-card">
+        <div class="incorporator-header">
+            <h3 class="incorporator-title">Incorporator</h3>
+            <button type="button" class="remove-incorporator-btn">
+                <span class="material-icons-outlined">delete</span>
+            </button>
+        </div>
+        <div class="form-group">
+            <label for="incorporator_name_address">Full Name and Address:</label>
+            <textarea name="incorporator_name_address" rows="3" required placeholder="John Doe, 123 Main St, Cape Town, 8001"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="incorporator_id">Identity or Registration #:</label>
+            <input type="text" name="incorporator_id" required placeholder="South African ID Number">
+        </div>
+        <div class="form-group">
+            <label for="incorporator_date">Date of Signing:</label>
+            <input type="date" name="incorporator_date" required>
+        </div>
+    </div>
+</template>
+{% endblock content %}
+
+{% block extra_scripts %}
+<script src="{% static 'pboapp/js/generate_npc_moi.js' %}"></script>
+{% endblock %}

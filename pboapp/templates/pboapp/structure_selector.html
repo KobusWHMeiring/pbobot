@@ -119,29 +119,46 @@
 
     <!-- Screen 3: Results -->
     <div id="results-screen" style="display: none;">
-        <div class="results-container">
+        <div class="results-container-new">
+            <!-- Header Section -->
             <div class="results-header">
                 <p class="results-header-eyebrow">OUR RECOMMENDATION</p>
                 <h1 id="result-title" class="results-title"></h1>
                 <p id="result-description" class="results-description"></p>
             </div>
-
-            <div class="results-grid">
-                <div class="results-list pros">
-                    <h3 class="results-list-title">✅ Pros</h3>
-                    <ul id="result-pros"></ul>
+    
+            <!-- Pros and Cons Grid -->
+            <div class="results-detail-grid">
+                <!-- Pros Column -->
+                <div>
+                    <h2 class="results-list-heading">
+                        <span class="material-icons-outlined icon-pro">check_circle</span>
+                        Pros
+                    </h2>
+                    <ul id="result-pros" class="results-item-list">
+                        <!-- JS will populate this -->
+                    </ul>
                 </div>
-                <div class="results-list cons">
-                    <h3 class="results-list-title">⚠️ Cons</h3>
-                    <ul id="result-cons"></ul>
+                <!-- Cons Column -->
+                <div>
+                    <h2 class="results-list-heading">
+                        <span class="material-icons-outlined icon-con">warning</span>
+                        Cons
+                    </h2>
+                    <ul id="result-cons" class="results-item-list">
+                        <!-- JS will populate this -->
+                    </ul>
                 </div>
             </div>
-            
-            <div class="results-actions">
-                 <a href="#" id="result-checklist-link" class="btn-primary-style">
+    
+            <!-- Final Actions -->
+            <div class="results-actions-final">
+                <a href="#" id="result-checklist-link" class="btn btn-primary btn-large">
                     <span class="truncate">View Registration Checklist</span>
                 </a>
-                <button id="start-over-button" class="btn-secondary-style">Start Over</button>
+                <button id="start-over-button" class="results-start-over-link">
+                    Start Over
+                </button>
             </div>
         </div>
     </div>

@@ -1,7 +1,6 @@
-<!-- pages/templates/pages/home.html -->
 {% extends "base.html" %}
 
-{% block title %}Empowering Non-Profits in SA - PBOBot{% endblock title %}
+{% block title %}Amicus NPO - Turn Your Passion into Impact{% endblock title %}
 
 {% block content %}
 <div class="content-wrapper">
@@ -9,43 +8,42 @@
         <div class="hero-padding">
             <div class="hero-section">
                 <div class="hero-text">
-                    <h1 class="hero-title">Empowering Non-Profit Organizations in South Africa</h1>
+                    <!-- NEW H1: More aspirational and user-focused -->
+                    <h1 class="hero-title">Turn Your Passion Into Impact.</h1>
+                    <!-- NEW H2: Explains the 'how' and speaks to the user's starting point -->
                     <h2 class="hero-subtitle">
-                        PBOBot is your comprehensive guide to understanding, registering, and managing your non-profit organization in South Africa. We provide step-by-step assistance to ensure your NPO is compliant and effective.
+                        Amicus NPO simplifies the journey from a community idea to a fully compliant, registered non-profit in South Africa. We guide you through every step, so you can focus on what truly matters: your mission.
                     </h2>
                 </div>
-                <button class="btn btn-primary btn-large">
-                    <span class="truncate">Get Started</span>
-                </button>
+                <!-- NEW CTA: More specific and action-oriented -->
+                <a href="{% url 'pboapp:structure_selector' %}" class="btn btn-primary btn-large">
+                    <span class="truncate">Find the Right Structure</span>
+                </a>
             </div>
         </div>
     </div>
-    
-    <h2 class="content-heading">What is an NPO?</h2>
-    <p class="content-paragraph">
-        A Non-Profit Organization (NPO) in South Africa is a registered entity that operates for the benefit of the public or a specific group, without the primary aim of making a profit. NPOs play a crucial role in addressing social, cultural, and environmental issues, contributing significantly to the country's development.
+
+    <!-- NEW SECTION HEADING -->
+    <h2 class="content-heading">Your Path from Idea to Registered NPO</h2>
+    <p class="content-paragraph-centered">
+        Navigating the world of non-profits can be complex. We break it down into four clear, manageable stages.
     </p>
 
-    <h2 class="content-heading">Why are NPOs Important in South Africa?</h2>
-    <p class="content-paragraph">
-        NPOs are vital for community development, providing essential services, advocating for social change, and promoting inclusivity. They often fill gaps where government and private sectors may fall short, addressing diverse needs across the nation.
-    </p>
-
-    <h2 class="content-heading">Registration and Compliance Steps</h2>
+    <!-- REVISED STEPS GRID: More user-centric language -->
     <div class="steps-grid">
-        <!-- Step 1 -->
+        <!-- Step 1: Decide -->
         <div class="step-timeline">
             <div class="icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256"><path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm-8-40V128a8,8,0,0,1,16,0v48a8,8,0,0,1-16,0Zm8-72a12,12,0,1,1-12,12A12,12,0,0,1,128,104Z"></path></svg>
             </div>
             <div class="line"></div>
         </div>
         <div class="step-content">
-            <p class="title">Understanding NPO Requirements</p>
-            <p class="description">Learn about the legal and regulatory framework for NPOs in South Africa.</p>
+            <p class="title">1. Choose Your Structure</p>
+            <p class="description">Answer a few simple questions to find the best legal entity for your mission—be it a Voluntary Association, NPC, or Trust.</p>
         </div>
 
-        <!-- Step 2 -->
+        <!-- Step 2: Act -->
         <div class="step-timeline">
             <div class="line top-line"></div>
             <div class="icon">
@@ -54,40 +52,42 @@
             <div class="line"></div>
         </div>
         <div class="step-content">
-            <p class="title">Preparing Your Application</p>
-            <p class="description">Gather necessary documents, including your constitution and founding documents.</p>
+            <p class="title">2. Register Your Entity</p>
+            <p class="description">Get a personalized checklist of the exact documents and forms you need to officially register with CIPC or the DSD.</p>
         </div>
 
-        <!-- Step 3 -->
-        <div class="step-timeline">
-            <div class="line top-line"></div>
-            <div class="icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256"><path d="M227.32,28.68a16,16,0,0,0-15.66-4.08l-.15,0L19.57,82.84a16,16,0,0,0-2.42,29.84l85.62,40.55,40.55,85.62A15.86,15.86,0,0,0,157.74,248q.69,0,1.38-.06a15.88,15.88,0,0,0,14-11.51l58.2-191.94c0-.05,0-.1,0-.15A16,16,0,0,0,227.32,28.68ZM157.83,231.85l-.05.14L118.42,148.9l47.24-47.25a8,8,0,0,0-11.31-11.31L107.1,137.58,24,98.22l.14,0L216,40Z"></path></svg>
-            </div>
-            <div class="line"></div>
-        </div>
-        <div class="step-content">
-            <p class="title">Submitting Your Application</p>
-            <p class="description">Submit your application to the Department of Social Development.</p>
-        </div>
-
-        <!-- Step 4 -->
+        <!-- Step 3: Qualify -->
         <div class="step-timeline">
             <div class="line top-line"></div>
             <div class="icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256"><path d="M208,40H48A16,16,0,0,0,32,56v58.78c0,89.61,75.82,119.34,91,124.39a15.53,15.53,0,0,0,10,0c15.2-5.05,91-34.78,91-124.39V56A16,16,0,0,0,208,40Zm0,74.79c0,78.42-66.35,104.62-80,109.18-13.53-4.51-80-30.69-80-109.18V56H208ZM82.34,141.66a8,8,0,0,1,11.32-11.32L112,148.68l50.34-50.34a8,8,0,0,1,11.32,11.32l-56,56a8,8,0,0,1-11.32,0Z"></path></svg>
             </div>
+            <div class="line"></div>
+        </div>
+        <div class="step-content">
+            <p class="title">3. Gain Tax Benefits</p>
+            <p class="description">Assess your eligibility for PBO status and learn how to apply to SARS to become tax-exempt and offer donor deductions.</p>
+        </div>
+
+        <!-- Step 4: Manage -->
+        <div class="step-timeline">
+            <div class="line top-line"></div>
+            <div class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256"><path d="M224,48H32a8,8,0,0,0-8,8V192a8,8,0,0,0,8,8H224a8,8,0,0,0,8-8V56A8,8,0,0,0,224,48Zm-80,24a8,8,0,0,1,8,8V92a8,8,0,0,1-16,0V80A8,8,0,0,1,144,72Zm-48,0a8,8,0,0,1,8,8V92a8,8,0,0,1-16,0V80A8,8,0,0,1,96,72Zm104,112H56a8,8,0,0,1-8-8V112H208v64A8,8,0,0,1,200,184Z"></path></svg>
+            </div>
             <div class="line bottom-line"></div>
         </div>
         <div class="step-content">
-            <p class="title">Ongoing Compliance</p>
-            <p class="description">Ensure your NPO remains compliant with annual reporting and governance requirements.</p>
+            <p class="title">4. Manage & Grow</p>
+            <p class="description">Stay on top of annual reports and compliance deadlines to keep your organization in good standing and ready for funding.</p>
         </div>
     </div>
+
     <div class="final-cta-container">
-        <button class="btn btn-primary btn-large">
-            <span class="truncate">Explore Registration Process</span>
-        </button>
+        <!-- Replaced button with a link -->
+        <a href="{% url 'pboapp:structure_selector' %}" class="btn btn-primary btn-large">
+            <span class="truncate">Start Your Journey</span>
+        </a>
     </div>
 </div>
 {% endblock content %}

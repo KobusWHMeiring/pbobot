@@ -1,0 +1,79 @@
+
+
+/* pboapp/static/pboapp/css/print.css */
+@media print {
+    @page {
+        size: A4;
+        margin: 18mm; /* Reduced margins to fit content better */
+    }
+
+    body > header,
+    header.site-header, /* Add your site's header class/ID if needed */
+    body > footer,
+    footer.site-footer, /* Add your site's footer class/ID if needed */
+    #preview-action-bar,
+    .debug-toolbar {
+        display: none !important;
+    }
+
+    /* Reset page wrapper for printing */
+    .preview-page-wrapper {
+        background: transparent !important;
+        padding: 0 !important;
+    }
+    
+    #document-container {
+        font-family: Arial, Helvetica, sans-serif !important;
+    }
+    
+    .a4-page {
+        width: 100% !important;
+        height: auto !important;
+        min-height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+        border: none !important;
+        page-break-after: always; /* Force page break after each .a4-page div */
+    }
+
+    /* Dont break after the last page */
+    .a4-page:last-child {
+        page-break-after: auto; /* Prevent an extra blank page at the end */
+    }
+
+    /* Ensure colors are black and backgrounds are transparent */
+    * {
+        color: black !important;
+        background: transparent !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    
+    .data-field {
+        border: 1px solid #000 !important;
+        background-color: #fff !important; /* Ensure background is white, not grey */
+    }
+
+    .incorporators-table, .incorporators-table th, .incorporators-table td {
+        border-color: black !important;
+    }
+
+    /* Prevent content from breaking awkwardly across pages */
+    .sidebar, .main-content section, .incorporators-table tr, .doc-footer {
+        page-break-inside: avoid;
+    }
+    
+    /* Global font-size reduction for print to ensure fit */
+    body {
+        font-size: 10pt;
+    }
+
+    /* Specific adjustments for print compactness */
+    .main-content {
+        line-height: 1.3;
+    }
+    .a4-page p, .a4-page ol li {
+        line-height: 1.4;
+    }
+}

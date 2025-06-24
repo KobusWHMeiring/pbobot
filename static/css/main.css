@@ -1,280 +1,460 @@
 /* static/css/main.css */
 
-/* --- Base & Typography --- */
+/* --- 1. Define a Modern Color Palette and Root Variables --- */
+:root {
+    --color-primary: #005A9C; /* A professional, trustworthy blue */
+    --color-primary-dark: #003d69;
+    --color-secondary: #FDB813; /* A warm, optimistic yellow/gold for accents */
+    --color-background: #F8F9FA; /* A very light grey for the page background */
+    --color-surface: #FFFFFF;    /* White for card backgrounds */
+    --color-text-primary: #212529; /* Dark grey for text, not pure black */
+    --color-text-secondary: #6C757D; /* Lighter grey for subtitles and descriptions */
+    --color-border: #E9ECEF;
+    --font-primary: 'Public Sans', sans-serif;
+    --font-secondary: 'Noto Sans', sans-serif;
+}
+
+/* --- 2. General Body and Layout Styling --- */
 body {
-    font-family: "Public Sans", "Noto Sans", sans-serif;
-    background-color: #ffffff;
-    color: #111418;
+    background-color: var(--color-background);
+    color: var(--color-text-primary);
+    font-family: var(--font-primary);
     margin: 0;
+    line-height: 1.6;
+}
+
+.layout-container {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    margin: 0;
-}
-
-/* --- Layout Containers --- */
-.layout-container {
+.main-content {
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
-}
-
-.main-content {
-    display: flex;
-    flex-grow: 1;
-    justify-content: center;
-    padding: 1.25rem 2.5rem; /* py-5 px-10ish for smaller screens */
 }
 
 .content-wrapper {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    max-width: 960px;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
 }
 
-/* --- Header --- */
+/* --- 3. Header and Navigation --- */
 .site-header {
+    background-color: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    padding: 1rem 1.5rem;
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    white-space: nowrap;
-    border-bottom: 1px solid #f0f2f5;
-    padding: 0.75rem 2.5rem;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .logo-container {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 0.75rem;
 }
 
-.logo-container .logo-icon {
-    width: 1rem;
-    height: 1rem;
-    color: #111418;
+.logo-icon {
+    color: var(--color-primary);
 }
 
-.logo-container .logo-text {
-    color: #111418;
-    font-size: 1.125rem;
+.logo-text {
+    font-family: var(--font-secondary);
+    font-size: 1.5rem;
     font-weight: 700;
-    line-height: 1.25;
-    letter-spacing: -0.015em;
+    margin: 0;
 }
 
 .header-nav {
     display: flex;
-    flex-grow: 1;
-    justify-content: flex-end;
-    gap: 2rem;
+    align-items: center;
+    gap: 1.5rem;
 }
 
 .nav-links {
     display: flex;
-    align-items: center;
-    gap: 2.25rem;
+    gap: 1.5rem;
 }
 
 .nav-links a {
-    color: #111418;
-    font-size: 0.875rem;
+    text-decoration: none;
+    color: var(--color-text-secondary);
     font-weight: 500;
-    line-height: 1.5;
+    transition: color 0.2s ease-in-out;
 }
 
-.header-actions {
-    display: flex;
-    gap: 0.5rem;
+.nav-links a:hover {
+    color: var(--color-primary);
 }
 
-/* --- Buttons --- */
+/* --- 4. Buttons --- */
 .btn {
-    display: flex;
-    min-width: 84px;
-    max-width: 480px;
-    cursor: pointer;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    border-radius: 0.5rem;
-    height: 2.5rem;
-    padding: 0 1rem;
-    font-size: 0.875rem;
-    font-weight: 700;
-    line-height: 1.5;
-    letter-spacing: 0.015em;
     border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    text-decoration: none; /* For <a> tags styled as buttons */
+    display: inline-block; /* For <a> tags */
 }
 
-.btn .truncate {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.btn-primary {
-    background-color: #0c77f2;
+.btn-primary, .btn-primary-style {
+    background-color: var(--color-primary);
     color: white;
 }
 
-.btn-secondary {
-    background-color: #f0f2f5;
-    color: #111418;
+.btn-primary:hover, .btn-primary-style:hover {
+    background-color: var(--color-primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn-secondary, .btn-secondary-style {
+    background-color: var(--color-surface);
+    color: var(--color-primary);
+    border: 1px solid var(--color-border);
+}
+
+.btn-secondary:hover, .btn-secondary-style:hover {
+    background-color: #f1f3f5;
+    border-color: #dee2e6;
 }
 
 .btn-large {
-    height: 3rem;
-    padding: 0 1.25rem;
-    font-size: 1rem;
+    padding: 0.8rem 2rem;
+    font-size: 1.1rem;
 }
 
-/* --- Hero Section --- */
+/* --- 5. Homepage Specific Hero Section --- */
 .hero-container-wrapper {
-    container-type: inline-size;
+    background-color: var(--color-surface);
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .hero-padding {
-    padding: 0; /* Base padding */
+    padding: 4rem 2rem;
 }
 
 .hero-section {
-    display: flex;
-    min-height: 480px;
-    flex-direction: column;
-    gap: 1.5rem;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
     text-align: center;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuCfPENgrbNKvOPzPAzchhOCGr6u0cXUPfBCjl21SGWvKlkQ3L1nAJnXwH3XZboXvLUNlOvca5W7b-DJZ9Q-Qk4goRsZ91z97L4bWqTnBfbfE02XtZJ3SCugp2csqyhyQuJU_5iHhfXf_Uy-gHolhfYnmKDW_fMybiqzsBWrV_0r98uS8ZqmKBYUCCtyynrlM0Eyfi6cQJODRln0LK7LDxWqZmd603CyW4wqiZHWZ99SHZxV6AVjf9YqVBrj-UO-dE7K6XX8VAaHQiV7");
-}
-
-.hero-text {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
 }
 
 .hero-title {
-    color: white;
-    font-size: 2.25rem;
+    font-family: var(--font-secondary);
+    font-size: 3.5rem;
     font-weight: 900;
-    line-height: 1.25;
-    letter-spacing: -0.033em;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    color: var(--color-text-primary);
 }
 
 .hero-subtitle {
-    color: white;
-    font-size: 0.875rem;
+    font-size: 1.25rem;
     font-weight: 400;
-    line-height: 1.5;
+    color: var(--color-text-secondary);
+    max-width: 750px;
+    margin: 0 auto 2.5rem auto;
 }
 
-/* --- Content Sections --- */
+/* --- 6. Generic Content and Steps Grid --- */
 .content-heading {
-    color: #111418;
-    font-size: 22px;
+    font-family: var(--font-secondary);
+    font-size: 2.5rem;
     font-weight: 700;
-    line-height: 1.25;
-    letter-spacing: -0.015em;
-    padding: 1.25rem 1rem 0.75rem 1rem;
+    text-align: center;
+    margin-bottom: 1rem;
 }
 
-.content-paragraph {
-    color: #111418;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    padding: 0.25rem 1rem 0.75rem 1rem;
-    margin: 0;
+.content-paragraph, .content-paragraph-centered {
+    font-size: 1.1rem;
+    color: var(--color-text-secondary);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 3rem;
 }
+.content-paragraph-centered { text-align: center; }
 
-/* --- Steps / Timeline --- */
 .steps-grid {
     display: grid;
     grid-template-columns: 40px 1fr;
-    gap: 0 0.5rem;
-    padding: 0 1rem;
+    gap: 0.5rem 1.5rem;
+    max-width: 800px;
+    margin: 0 auto 3rem auto;
 }
 
 .step-timeline {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.25rem;
 }
 
 .step-timeline .icon {
-    color: #111418;
-    padding-top: 0.75rem;
+    background-color: var(--color-primary);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
 }
-.step-timeline .icon svg {
-    width: 24px;
-    height: 24px;
-}
+
 .step-timeline .line {
-    width: 1.5px;
-    background-color: #dbe0e6;
+    width: 2px;
+    background-color: var(--color-border);
     flex-grow: 1;
 }
-.step-timeline .top-line {
-    height: 0.5rem;
-}
-.step-timeline .bottom-line {
-    padding-bottom: 0.75rem;
+/* Hide the lines for the first and last items */
+.steps-grid > .step-timeline:first-of-type .top-line,
+.steps-grid > .step-timeline:last-of-type .bottom-line {
+    background-color: transparent;
 }
 
 .step-content {
-    display: flex;
-    flex-direction: column;
-    padding: 0.75rem 0;
+    padding-bottom: 2rem;
 }
-
 .step-content .title {
-    color: #111418;
-    font-size: 1rem;
-    font-weight: 500;
-    line-height: 1.5;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0 0 0.25rem 0;
 }
-
 .step-content .description {
-    color: #60748a;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
+    color: var(--color-text-secondary);
+    margin: 0;
 }
 
 .final-cta-container {
-    display: flex;
-    justify-content: center;
-    padding: 0.75rem 1rem;
+    text-align: center;
+    margin-top: 2rem;
 }
 
-/* --- Container Queries / Responsive Design --- */
-@container (min-width: 480px) {
-    .hero-padding {
-        padding: 1rem;
+.results-container-new {
+    background-color: var(--color-surface);
+    border-radius: 12px;
+    padding: 2.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.results-header .results-description {
+    color: var(--color-text-secondary);
+    max-width: 750px;
+    margin: 0.5rem auto 0 auto;
+    font-size: 1.1rem;
+}
+
+.results-detail-grid {
+    display: grid;
+    gap: 2rem;
+    margin-top: 2.5rem;
+}
+
+/* Make it a 2-column grid on larger screens */
+@media (min-width: 768px) {
+    .results-detail-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3rem;
     }
-    .hero-section {
-        gap: 2rem;
-        border-radius: 0.5rem;
-    }
-    .hero-title {
-        font-size: 3rem; /* 5xl */
-    }
-    .hero-subtitle {
-        font-size: 1rem; /* base */
-    }
+}
+
+.results-list-heading {
+    font-size: 1.25rem; /* text-xl */
+    font-weight: 600; /* font-semibold */
+    color: var(--color-text-primary); /* text-slate-700 */
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.results-list-heading .material-icons-outlined {
+    margin-right: 0.5rem;
+}
+
+.icon-pro {
+    color: #22c55e; /* green-500 */
+}
+.icon-con {
+    color: #ef4444; /* red-500 */
+}
+
+.results-item-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem; /* space-y-3 */
+}
+
+.results-item {
+    display: flex;
+    align-items: flex-start;
+    color: var(--color-text-secondary); /* text-slate-600 */
+    font-size: 0.95rem; /* text-sm */
+    line-height: 1.5;
+}
+
+.results-item-icon {
+    color: var(--color-primary); /* text-sky-500 */
+    margin-right: 0.75rem;
+    font-size: 1rem !important; /* text-base */
+    margin-top: 0.125rem; /* mt-0.5 adjustment */
+}
+
+.results-actions-final {
+    margin-top: 2.5rem; /* mt-10 */
+    text-align: center;
+}
+
+.results-start-over-link {
+    display: block;
+    margin-top: 1rem; /* mt-4 */
+    color: var(--color-primary);
+    font-weight: 500;
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.results-start-over-link:hover {
+    color: var(--color-primary-dark);
+    text-decoration: underline;
+}
+
+/* Also, let's update the button to match the design */
+.btn-large {
+    padding: 0.8rem 2rem;
+    font-size: 1rem; /* Adjusted size */
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); /* shadow-md */
+}
+
+.content-wrapper-checklist {
+    width: 100%;
+    padding: 2rem 1.5rem; /* Padding for mobile */
+}
+
+.checklist-card {
+    background-color: var(--color-surface);
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); /* shadow-xl */
+    border-radius: 0.75rem; /* rounded-xl */
+    width: 100%;
+    max-width: 48rem; /* max-w-2xl */
+    margin: 0 auto;
+    padding: 2rem 2.5rem; /* p-8 md:p-10 */
+}
+
+.checklist-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem; /* mb-6 */
+}
+
+.checklist-title {
+    font-size: 1.875rem; /* text-3xl */
+    font-weight: 700;
+    color: #1f2937; /* gray-800 */
+    line-height: 1.2;
+}
+
+.checklist-close-button {
+    color: #9ca3af; /* gray-400 */
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+}
+.checklist-close-button:hover {
+    color: #4b5563; /* gray-600 */
+}
+
+.checklist-description {
+    color: #4b5563; /* gray-600 */
+    margin-bottom: 2rem; /* mb-8 */
+    font-size: 1rem; /* text-base */
+}
+
+.checklist-item-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; /* space-y-6 */
+}
+
+.checklist-item-card {
+    display: flex;
+    align-items: anchor-center;
+    gap: 1rem; /* space-x-4 */
+    padding: 1rem; /* p-4 */
+    background-color: #f9fafb; /* bg-gray-50 */
+    border-radius: 0.5rem; /* rounded-lg */
+    border: 1px solid var(--color-border); /* border-gray-200 */
+}
+
+.checklist-item-icon {
+    margin-top: 0.25rem; /* mt-1 */
+}
+
+.checklist-item-icon.icon-complete {
+    color: var(--color-primary); /* text-blue-600 */
+}
+
+.checklist-item-icon.icon-pending {
+    color: #9ca3af; /* text-gray-400 */
+}
+
+.checklist-item-title {
+    font-size: 1.125rem; /* text-lg */
+    font-weight: 600;
+    color: #1f2937; /* gray-800 */
+}
+
+.checklist-item-details {
+    color: #4b5563; /* gray-600 */
+    font-size: 0.875rem; /* text-sm */
+    margin-top: 0.25rem; /* mt-1 */
+}
+
+.checklist-item-action-link {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.875rem; /* text-sm */
+    color: var(--color-primary); /* text-blue-600 */
+    font-weight: 500;
+    margin-top: 0.5rem; /* mt-2 */
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+}
+
+.checklist-item-action-link:hover {
+    color: var(--color-primary-dark); /* hover:text-blue-800 */
+}
+
+.checklist-item-action-link .material-icons-outlined {
+    font-size: 1rem !important; /* text-sm */
+    margin-left: 0.25rem; /* ml-1 */
+}
+
+.checklist-footer {
+    margin-top: 2.5rem; /* mt-10 */
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Ensure footer button styles align with the main button */
+.checklist-footer .btn {
+    display: inline-flex;
+    align-items: center;
 }

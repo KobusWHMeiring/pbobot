@@ -67,25 +67,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
         details.pros.forEach(pro => {
             const li = document.createElement('li');
-            li.className = 'content-paragraph';
-            li.style.padding = '0';
-            li.textContent = pro;
+            li.className = 'results-item'; // Use a class for styling
+    
+            const icon = document.createElement('span');
+            icon.className = 'material-icons-outlined results-item-icon';
+            icon.textContent = 'fiber_manual_record';
+    
+            li.appendChild(icon);
+            li.appendChild(document.createTextNode(` ${pro}`)); // Add space before text
             resultPros.appendChild(li);
         });
 
         details.cons.forEach(con => {
             const li = document.createElement('li');
-            li.className = 'content-paragraph';
-            li.style.padding = '0';
-            li.textContent = con;
+            li.className = 'results-item'; // Use a class for styling
+            
+            const icon = document.createElement('span');
+            icon.className = 'material-icons-outlined results-item-icon';
+            icon.textContent = 'fiber_manual_record';
+    
+            li.appendChild(icon);
+            li.appendChild(document.createTextNode(` ${con}`)); // Add space before text
             resultCons.appendChild(li);
         });
         
         // Update the checklist link (you will build these pages later)
-        // For now, it just points to a placeholder '#'
-        resultChecklistLink.href = '#'; // e.g. `/checklists/${recommendationKey.toLowerCase()}/`
-        resultChecklistLink.querySelector('.truncate').textContent = `View ${recommendationKey} Registration Checklist`;
+        resultChecklistLink.href = `/tools/checklists/${recommendationKey.toLowerCase()}/`;
 
+        resultChecklistLink.querySelector('.truncate').textContent = `View ${recommendationKey} Registration Checklist`;
+    
         showScreen(resultsScreen);
     }
 

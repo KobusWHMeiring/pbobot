@@ -1,0 +1,172 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Preview MOI (CoR 15.1C) - PBOBot{% endblock title %}
+
+{% block page_specific_css %}
+    <link rel="stylesheet" href="{% static 'pboapp/css/preview.css' %}">
+    <link rel="stylesheet" media="print" href="{% static 'pboapp/css/print.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="preview-page-wrapper">
+    <!-- Action Bar (Hidden on Print) -->
+    <div id="preview-action-bar" class="preview-actions">
+        <button id="edit-btn" class="btn btn-secondary"><span class="material-icons-outlined">edit</span> Back to Edit</button>
+        <button id="print-btn" class="btn btn-secondary"><span class="material-icons-outlined">print</span> Print Document</button>
+        <button id="confirm-btn" class="btn btn-primary" data-checklist-url="{% url 'pboapp:structure_setup' 'npc' %}">
+            <span class="material-icons-outlined">check_circle</span> Confirm & Return to Checklist
+        </button>
+    </div>
+
+    <!-- This container holds all pages -->
+    <div id="document-container">
+
+        <!-- PAGE 1 -->
+        <div class="a4-page">
+            <div class="page-1-grid">
+                <aside class="sidebar">
+                    <h3>Form CoR 15.1C</h3>
+                    <h4>Short Standard Form <br> Non Profit Companies <br> without members</h4>
+                    <ul>
+                        <li>This form is issued in terms of section 13 of the Companies Act, 2008, and Regulation 15 of the Companies Regulations, 2011.</li>
+                        <li>This form may be used only to incorporate a Non Profit company without members.</li>
+                        <li>A Non Profit company may be incorporated by three or more persons.</li>
+                        <li>The Incorporators must complete this form by-
+                            <ul class="alpha-list-bare">
+                                <li>(a) filling in the Name of the Company...</li>
+                                <li>(b) inserting a statement of the objects of the company in the space provided;</li>
+                                <li>(c) inserting the number of directors and alternate directors in the spaces provided; and</li>
+                                <li>(d) each signing and dating the form on a line of the Table.</li>
+                            </ul>
+                        </li>
+                        <li>There are 3 pages in this form...</li>
+                        <li>This Form must be filed with Form CoR 14.1, Notice of Incorporation...</li>
+                    </ul>
+                    <div class="contact-box">
+                        <h5>Contacting the Commission</h5>
+                        <p>The Companies and Intellectual Property Commission of South Africa</p>
+                        <p><strong>Postal Address</strong><br>PO Box 429<br>Pretoria<br>0001<br>Republic of South Africa<br>Tel: 086 100 2472</p>
+                        <p>www.cipc.co.za</p>
+                    </div>
+                </aside>
+
+                <main class="main-content">
+                    <header class="doc-header">
+                        <h4>Companies and Intellectual Property Commission</h4>
+                        <h5>Republic of South Africa</h5>
+                        <h2>Memorandum of Incorporation <br> of</h2>
+                        <div class="data-field large-field text-center" id="preview-company-name">[Company Name]</div>
+                        <p>which is referred to in the rest of this Memorandum of Incorporation as "the Company".</p>
+                    </header>
+                    <section>
+                        <p>The Company is a Non Profit company without members, with the following objects:</p>
+                        <div class="data-field large-textarea" id="preview-company-objects">[Company Objects]</div>
+                        <p>The Company has at least <span class="data-field" id="preview-director-count">[#]</span> directors and <span class="data-field" id="preview-alternate-director-count">[#]</span> alternate director(s), to be appointed in the following manner:</p>
+                        <div class="data-field large-textarea" id="preview-director-appointment-manner">[Director Appointment Manner]</div>
+                    </section>
+                    <section>
+                        <h4>Adoption of Memorandum of Incorporation</h4>
+                        <p>This Memorandum of Incorporation was adopted by the incorporators of the Company, in accordance with section 13 (1), as evidenced by the following signatures made by each of them, or on their behalf (only required in the case of new company registrations):</p>
+                        <table class="incorporators-table">
+                            <thead>
+                                <tr>
+                                    <th>Name and address</th>
+                                    <th>Identity or<br>Registration #</th>
+                                    <th>Signature</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody id="incorporators-table-body">
+                                <!-- JS will populate this -->
+                            </tbody>
+                        </table>
+                    </section>
+                    <footer class="doc-footer">This form is prescribed by the Minister of Trade and Industry in terms of section 223 of the Companies Act, 2008 (Act No. 71 of 2008).</footer>
+                </main>
+            </div>
+        </div>
+
+        <!-- PAGE 2 -->
+        <div class="a4-page">
+            <p>In this Memorandum of Incorporation -</p>
+            <ol class="alpha-list">
+                <li>a reference to a section by number refers to the corresponding section of the Companies Act, 2008;</li>
+                <li>words that are defined in the Companies Act, 2008, bear the same meaning in this Memorandum as in that Act.</li>
+            </ol>
+            <h4>Article 1 - Incorporation and Nature of the Company</h4>
+            <h5>1.1 Incorporation</h5>
+            <ol class="numeric-list">
+                <li>The Company is incorporated as a Non Profit company, as defined in the Companies Act, 2008.</li>
+                <li>The Company is incorporated in accordance with, and governed by—
+                    <ol class="alpha-list">
+                        <li>the provisions of the Companies Act, 2008 that are applicable to Non Profit companies, without any limitation, extension, variation or substitution; and</li>
+                        <li>the provisions of this Memorandum of Incorporation.</li>
+                    </ol>
+                </li>
+            </ol>
+            <h5>1.2 Objects and Powers of the Company</h5>
+            <ol class="numeric-list">
+                <li>The Objects of the Company are as set out on the cover sheet and, except to the extent necessarily implied by the stated objects, the purposes and powers of the Company are not subject to any restriction, limitation or qualification, as contemplated in section 19 (1)(b)(ii).</li>
+                <li>The Company is not subject to any provision contemplated in section 15 (2)(b) or (c).</li>
+                <li>upon dissolution of the Company, it net assets must be distributed in the manner determined in accordance with Item 1(4)(b) of Schedule 1 of the Companies Act, 2008.</li>
+            </ol>
+            <h5>1.3 Memorandum of Incorporation and Company rules</h5>
+            <ol class="numeric-list">
+                 <li>This Memorandum of Incorporation of the Company may be altered or amended only in the manner set out in section 16, 17 or 152 (6) (b).</li>
+                 <li>The authority of the Company's Board of Directors to make rules for the Company, as contemplated in section 15 (3) to (5), is not limited or restricted in any manner by this Memorandum of Incorporation.</li>
+                 <li>The Board must publish any rules made in terms of section 15 (3) to (5) by delivering a copy of those rules to each director by ordinary mail.</li>
+                 <li>The Company must publish a notice of any alteration of the Memorandum of Incorporation or the Rules, made in terms of section 17 (1), by delivering a copy of the notice to each director by ordinary mail.</li>
+            </ol>
+            <h5>1.4 Optional provisions of Companies Act, 2008 do not apply</h5>
+            <p>The Company does not elect, in terms of section 34 (2), to comply voluntarily with the provisions of Chapter 3 of the Companies Act, 2008.</p>
+            <h5>1.5 Company not to have members</h5>
+            <p>As contemplated in Item 4 (1) of Schedule 1 of the Act, the Company has no members.</p>
+            <h4>Article 2 - Directors and Officers</h4>
+            <h5>2.1 Composition of the Board of Directors</h5>
+            <p>The Board of Directors of the Company comprises at least the number of directors, and alternate directors shown on the cover sheet, each of whom -</p>
+            <ol class="alpha-list">
+                <li>is to be appointed in the manner set out on the cover sheet; and</li>
+                <li>serves for an indefinite term until substituted by the person or entity that appointed the director.</li>
+            </ol>
+            <div class="page-number">2</div>
+        </div>
+
+        <!-- PAGE 3 -->
+        <div class="a4-page">
+            <h5>2.2 Authority of the Board of Directors and Committees</h5>
+            <ol class="numeric-list">
+                <li>This memorandum of Incorporation does not limit or restrict the authority of the Company's Board of Directors to—
+                    <ol class="alpha-list">
+                        <li>manage and direct the business and affairs of the Company, as set out in section 66 (1);</li>
+                        <li>consider a matter other than at a meeting, as set out in section 74;</li>
+                        <li>conduct a meeting entirely by electronic communication... as set out in section 73 (3);</li>
+                        <li>determine the manner and form of providing notice of its meetings, as set out in section 73 (4);</li>
+                        <li>proceed with a meeting despite a failure or defect in giving notice of the meeting, as set out in section 73 (5);</li>
+                        <li>appoint committees of directors... as set out in section 73 (2)(a).</li>
+                    </ol>
+                </li>
+                <li>The right of the Company's directors to requisition a meeting of the Board... may be exercised by at least 25% of the directors... or by 2 (two) directors...</li>
+                <li>The quorum requirement for a directors meeting... are as set out in section 73 (5).</li>
+                <li>This Memorandum of Incorporation does not limit or restrict the authority of any committee appointed by the Company's Board of Directors, as set out in section 72 (2).</li>
+            </ol>
+            <h5>2.3 Indemnification of Directors</h5>
+            <p>This Memorandum of Incorporation does not limit, restrict or extend the authority of the Company's Board of Directors to –</p>
+            <ol class="alpha-list">
+                <li>advance expenses to a director, or indemnify a director... as set out in section 78 (4);</li>
+                <li>indemnify a director in respect of liability, as set out in section 78 (5); or</li>
+                <li>purchase insurance to protect the Company, or a director, as set out in section 78 (7).</li>
+            </ol>
+            <h5>2.4 Officers</h5>
+            <p>The Board of Directors may appoint any officers it considers necessary to better achieve the objects of the Company.</p>
+            <div class="page-number">3</div>
+        </div>
+
+    </div>
+</div>
+{% endblock content %}
+
+
+{% block extra_scripts %}
+<script src="{% static 'pboapp/js/preview_npc_moi.js' %}"></script>
+{% endblock %}
