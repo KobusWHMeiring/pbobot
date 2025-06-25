@@ -2,22 +2,23 @@
 {% load static %}
 {% block title %}Preview Name Reservation (CoR 9.1) - PBOBot{% endblock title %}
 {% block page_specific_css %}
-    <link rel="stylesheet" href="{% static 'pboapp/css/preview.css' %}">
-    <link rel="stylesheet" media="print" href="{% static 'pboapp/css/print.css' %}">
+<link rel="stylesheet" href="{% static 'pboapp/css/preview.css' %}">
+<link rel="stylesheet" media="print" href="{% static 'pboapp/css/print.css' %}">
 {% endblock %}
 
 {% block content %}
 <div class="preview-page-wrapper">
     <div id="preview-action-bar" class="preview-actions">
-        <button id="edit-btn" class="btn btn-secondary"><span class="material-icons-outlined">edit</span> Back to Edit</button>
-        <button id="print-btn" class="btn btn-secondary"><span class="material-icons-outlined">print</span> Print Document</button>
+        <button id="edit-btn" class="btn btn-secondary"><span class="material-icons-outlined">edit</span> Back to
+            Edit</button>
+        <button id="print-btn" class="btn btn-secondary"><span class="material-icons-outlined">print</span> Print
+            Document</button>
         <button id="confirm-btn" class="btn btn-primary" data-checklist-url="{% url 'pboapp:structure_setup' 'npc' %}">
             <span class="material-icons-outlined">check_circle</span> Confirm & Return to Checklist
         </button>
     </div>
-
-    <div id="document-container">
-        <div class="a4-page">
+    <div class="a4-page">
+        <div id="document-container">
             <header class="doc-header-main">
                 <h2>Companies and Intellectual Property Commission</h2>
                 <h3>Republic of South Africa</h3>
@@ -30,94 +31,157 @@
                 <aside class="sidebar cor14-1-sidebar">
                     <div class="sidebar-title-box">Form CoR 9.1</div>
                     <ul>
-                        <li>This form is issued in terms of section 11 and 12 of the Companies Act, 2008 and Regulations 8 and 9 of the Companies Regulations, 2011, which set out the requirements for allowable names.</li>
-                        <li>You may list up to 4 alternative names, which will be considered for reservation in the listed order. Only one name will be reserved.</li>
-                        <li>If the application is a juristic person, please attach separate sheet providing contact details of the person authorized to discuss the application.</li>
-                        <li>A fee of R50 for the name listed must accompany this application if the application is submitted electronically; or R75 for the names, in any other case.</li>
-                        <li>Every word of the proposed name must be expressed using the alphabet that is commonly used for writing in an official language of the Republic...</li>
-                        <li>A proposed name is not reserved for use until the Commission has issued a Confirmation Notice in Form CoR 9.4.</li>
+                        <li>This form is issued in terms of section 11 and 12 of the Companies Act, 2008 and Regulations
+                            8 and 9 of the Companies Regulations, 2011, which set out the requirements for allowable
+                            names.</li>
+                        <li>You may list up to 4 alternative names, which will be considered for reservation in the
+                            listed order. Only one name will be reserved.</li>
+                        <li>If the application is a juristic person, please attach separate sheet providing contact
+                            details of the person authorized to discuss the application.</li>
+                        <li>A fee of R50 for the name listed must accompany this application if the application is
+                            submitted electronically; or R75 for the names, in any other case.</li>
+                        <li>Every word of the proposed name
+                            must be expressed using the
+                            alphabet that is commonly used
+                            for writing in an official language
+                            of the Republic, and any number,
+                            other than a date, must be
+                            expressed in words, or Roman or
+                            Arabic numerals.</li>
+                        <li>A proposed name is not reserved for use until the Commission has issued a Confirmation
+                            Notice in Form CoR 9.4.</li>
                     </ul>
                     <div class="contact-box-14-1">
                         <h4>Contacting the Commission</h4>
                         <p>The Companies and Intellectual Property Commission of South Africa</p>
-                        <p><strong>Postal Address</strong><br>PO Box 429<br>Pretoria, 0001<br>Republic of South Africa<br>Tel: 086 100 2472</p>
+                        <p><strong>Postal Address</strong><br>PO Box 429<br>Pretoria, 0001<br>Republic of South
+                            Africa<br>Tel: 086 100 2472</p>
                         <p>www.cipc.co.za</p>
                     </div>
                 </aside>
 
                 <!-- === RIGHT MAIN CONTENT === -->
                 <main class="main-content">
-                    <div class="form-row"><label>Applicant:</label><div class="form-line" id="preview-applicant-name"></div></div>
-                    <div class="form-row"><label>Customer Code:</label><div class="form-line" id="preview-customer-code"></div></div>
-                    
+                    <div class="form-row"><label>Applicant:</label>
+                        <div class="form-line" id="preview-applicant-name"></div>
+                    </div>
+                    <div class="form-row"><label>Customer Code:</label>
+                        <div class="form-line" id="preview-customer-code"></div>
+                    </div>
+
                     <div class="applicant-details-box">
                         <small>(Name, identity or registration number, and address of Applicant:)</small>
                         <div class="applicant-details-content" id="preview-applicant-details"></div>
                     </div>
 
                     <div class="bordered-box">
-                        <p>The Applicant applies in term of section 12 of the Companies Act, 2008 to reserve the first eligible name among the following:</p>
+                        <p>The Applicant applies in term of section 12 of the Companies Act, 2008 to reserve the first
+                            eligible name among the following:</p>
                         <small>(Insert the proposed name or names to be considered in order for reservation)</small>
                         <ol class="name-list">
-                            <li><div class="form-line" id="preview-name-1"></div></li>
-                            <li><div class="form-line" id="preview-name-2"></div></li>
-                            <li><div class="form-line" id="preview-name-3"></div></li>
-                            <li><div class="form-line" id="preview-name-4"></div></li>
+                            <li>
+                                <div class="form-line" id="preview-name-1"></div>
+                            </li>
+                            <li>
+                                <div class="form-line" id="preview-name-2"></div>
+                            </li>
+                            <li>
+                                <div class="form-line" id="preview-name-3"></div>
+                            </li>
+                            <li>
+                                <div class="form-line" id="preview-name-4"></div>
+                            </li>
                         </ol>
                     </div>
 
                     <section class="form-section-14-1">
-                        <p><strong>1. Does any proposed name –</strong></p>
-                        <table class="compliance-table">
-                            <tbody>
-                                <tr>
-                                    <td>(a) Include any word in a language that is not an official language of the Republic?</td>
-                                    <td class="option-cell"><span class="checkbox-placeholder" id="check-q_a_yes"></span> Yes</td>
-                                    <td class="option-cell"><span class="checkbox-placeholder" id="check-q_a_no"></span> No</td>
-                                </tr>
-                                <tr>
-                                    <td>(b) Include any word, number or other element that constitutes a registered trade mark, mark in respect of which an application for registration has been filed in the Republic, or a well-known trade mark as contemplated in section 35 of the Trade Mark Act, 1993?</td>
-                                    <td class="option-cell"><span class="checkbox-placeholder" id="check-q_b_yes"></span> Yes</td>
-                                    <td class="option-cell"><span class="checkbox-placeholder" id="check-q_b_no"></span> No</td>
-                                </tr>
-                                <tr>
-                                    <td>(c) Fall within the category of names restricted in terms of section 11 (2) (c) of the Companies Act, or Regulation 8 (5)?</td>
-                                    <td class="option-cell"><span class="checkbox-placeholder" id="check-q_c_yes"></span> Yes</td>
-                                    <td class="option-cell"><span class="checkbox-placeholder" id="check-q_c_no"></span> No</td>
-                                </tr>
-                                <tr>
-                                    <td>(d) Is any proposed name similar to that of another company close corporation or co-operative?</td>
-                                    <td class="option-cell"><span class="checkbox-placeholder" id="check-q_d_yes"></span> Yes</td>
-                                    <td class="option-cell"><span class="checkbox-placeholder" id="check-q_d_no"></span> No</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <p class="small-text">If the answer of any question is "Yes", please attach a separate sheet setting out the information or satisfactory evidence required by Regulation 8 (3) to (6), as applicable, with respect to each name.</p>
+                        <div class="compliance-questions-container">
+                            <p><strong>1. Does any proposed name –</strong></p>
+                            
+                            <div class="compliance-question">
+                                <p>(a) Include any word in a language that is not an official language of the Republic?</p>
+                                <div class="compliance-options">
+                                    <div class="option-cell"><span class="checkbox-placeholder" id="check-q_a_yes"></span> Yes</div>
+                                    <div class="option-cell"><span class="checkbox-placeholder" id="check-q_a_no"></span> No</div>
+                                </div>
+                            </div>
+                        
+                            <div class="compliance-question">
+                                <p>(b) Include any word, number or other element that constitutes a registered trade mark, mark in respect of which an application for registration has been filed in the Republic, or a well-known trade mark as contemplated in section 35 of the Trade Mark Act, 1993?</p>
+                                <div class="compliance-options">
+                                    <div class="option-cell"><span class="checkbox-placeholder" id="check-q_b_yes"></span> Yes</div>
+                                    <div class="option-cell"><span class="checkbox-placeholder" id="check-q_b_no"></span> No</div>
+                                </div>
+                            </div>
+                        
+                            <div class="compliance-question">
+                                <p>(c) Fall within the category of names restricted in terms of section 11 (2) (c) of the Companies Act, or Regulation 8 (5)?</p>
+                                <div class="compliance-options">
+                                    <div class="option-cell"><span class="checkbox-placeholder" id="check-q_c_yes"></span> Yes</div>
+                                    <div class="option-cell"><span class="checkbox-placeholder" id="check-q_c_no"></span> No</div>
+                                </div>
+                            </div>
+                        
+                            <div class="compliance-question">
+                                <p>(d) Is any proposed name similar to that of another company close corporation or co-operative?</p>
+                                <div class="compliance-options">
+                                    <div class="option-cell"><span class="checkbox-placeholder" id="check-q_d_yes"></span> Yes</div>
+                                    <div class="option-cell"><span class="checkbox-placeholder" id="check-q_d_no"></span> No</div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="small-text">If the answer of any question is "Yes", please attach a separate sheet
+                            setting out the information or satisfactory evidence required by Regulation 8 (3) to (6), as
+                            applicable, with respect to each name.</p>
                     </section>
-                    
-                    <div class="declaration-box">
-                        <p><strong>I declare that the information in this application is true. If I am not the applicant, I declare that the Applicant has authorised me to make this application.</strong></p>
-                        <div class="signature-grid">
-                            <div><label>Signature</label><div class="signature-line"></div></div>
-                            <div><label>Date</label><div class="signature-line" id="preview-declaration-date"></div></div>
-                        </div>
-                    </div>
 
-                    <div class="commission-box">
-                        <div class="box-title">For Commission Use only</div>
-                        <div class="signature-grid">
-                            <div><label>Commission file number:</label><div class="signature-line"></div></div>
-                            <div><label>Date filed:</label><div class="signature-line"></div></div>
+                    
+                </main>
+                
+                
+            </div>
+            <div class = 'bottom-box'>
+                    <div class="declaration-box">
+                    <p><strong>I declare that the information in this application is true. If I am not the
+                            applicant, I declare that the Applicant has authorised me to make this
+                            application.</strong></p>
+                    <div class="signature-grid">
+                        <div class="signature-cell">
+                            <label>Signature</label>
+                            <div class="signature-pad-container">
+                                <!-- The canvas is for drawing on-screen -->
+                                <canvas id="signature-canvas"></canvas>
+                                
+                                <!-- This image will be hidden on-screen but shown for printing -->
+                                <img id="signature-image" alt="User's Signature" style="display: none;">
+                    
+                                <button id="clear-signature-btn" class="btn-link">Clear</button>
+                            </div>
+                        </div>
+                        <div class="signature-cell"><label>Date</label>
+                            <div class="signature-line" id="preview-declaration-date"></div>
                         </div>
                     </div>
-                </main>
-            </div>
-            <footer class="doc-footer-14-1">This form is prescribed by the Minister of Trade and Industry in terms of section 223 of the Companies Act, 2008 (Act No. 71 of 2008).</footer>
+                </div>
+
+                <div class="commission-box">
+                    <div class="box-title">For Commission Use only</div>
+                    <div class="commission-cell"><label>Commission file number:</label>
+                        <div class="commission-signature-line"></div>
+                    </div>
+                    <div class="commission-cell"><label>Date filed:</label>
+                        <div class="commission-signature-line"></div>
+                    </div>
+                </div>
+                </div>
+            <footer class="doc-footer-14-1">This form is prescribed by the Minister of Trade and Industry in terms of
+                section 223 of the Companies Act, 2008 (Act No. 71 of 2008).</footer>
         </div>
     </div>
 </div>
 {% endblock %}
 
 {% block extra_scripts %}
+<script src="{% static 'pboapp/js/signature_pad.umd.min.js' %}"></script>
 <script src="{% static 'pboapp/js/preview_npc_cor9_1.js' %}"></script>
 {% endblock %}

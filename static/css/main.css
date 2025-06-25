@@ -674,17 +674,7 @@ body {
 
 /* --- 13. CoR 9.1 Compliance Question Styles --- */
 
-.compliance-questions-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem; /* space-y-8 */
-}
 
-.compliance-question {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-}
 
 .question-number {
     color: var(--color-text-secondary);

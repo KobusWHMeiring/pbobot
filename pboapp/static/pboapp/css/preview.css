@@ -1,5 +1,9 @@
+/* pboapp/static/css/preview.css */
+
+/* --- 1. Main Wrappers & Action Bar --- */
 .preview-page-wrapper {
-    background-color: #525659; /* CIPC grey background */
+    background-color: #525659;
+    /* A neutral dark grey background */
     padding: 2rem 1rem;
     min-height: 100vh;
 }
@@ -13,110 +17,57 @@
     padding: 1rem;
     background: white;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     position: sticky;
     top: 1rem;
     z-index: 1000;
 }
 
-/* --- A4 Page Simulation --- */
-#document-container {
+/* --- 2. On-Screen A4 Page Simulation --- */
+.a4-page {
+    background: white;
+    width: 210mm;
+    min-height: 297mm;
+    /* This creates the "page" look on screen */
+    margin: 0 auto;
+    padding: 10mm;
+    box-sizing: border-box;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     font-family: Arial, Helvetica, sans-serif;
     color: black;
 }
 
-.a4-page {
-    background: white;
-    width: 210mm;
-    /* THIS RULE IS FOR THE SCREEN ONLY to simulate an A4 page */
-    min-height: 297mm; 
-    margin: 0 auto 1rem auto;
-    padding: 20mm;
-    box-sizing: border-box;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    position: relative; 
+#document-container {
+    width: 100%;
+    height: 100%;
 }
 
-/* --- Page 1 Specific Layout --- */
-.page-1-grid {
-    display: grid;
-    grid-template-columns: 2fr 5fr;
-    gap: 15px;
-    /* REMOVED height: 100%; to allow content to dictate height */
+/* --- 3. Critical Layout Overrides --- */
+/* Resets the main content padding inherited from the base template */
+#document-container .main-content {
+    padding-top: 0 !important;
 }
 
-.sidebar {
-    border-right: 2px solid black;
-    padding-right: 15px;
-    font-size: 8pt;
-}
-.sidebar h3, .sidebar h4 { font-weight: bold; margin: 0 0 1em 0; }
-.sidebar h3 { font-size: 11pt; }
-.sidebar h4 { font-size: 10pt; line-height: 1.2; }
-.sidebar ul { list-style-type: disc; padding-left: 1.2em; margin-bottom: 1em;}
-.sidebar ul li { margin-bottom: 0.8em; line-height: 1.3; }
-.sidebar .alpha-list-bare { list-style-type: none; padding-left: 1.2em; }
 
-.contact-box { border: 1px solid black; padding: 0.5em; text-align: center; }
-.contact-box h5 { font-weight: bold; font-size: 9pt; margin: 0 0 0.5em 0; }
-.contact-box p { margin: 0; line-height: 1.3; }
-
-.main-content { font-size: 10pt; line-height: 1.4; }
-.doc-header { text-align: center; border-bottom: 2px solid black; padding-bottom: 10px; margin-bottom: 15px;}
-.doc-header h4 { font-size: 11pt; margin: 0; }
-.doc-header h5 { font-size: 10pt; margin: 0; }
-.doc-header h2 { font-size: 12pt; font-weight: bold; margin: 1em 0 0.5em 0; }
-.doc-header p { margin: 1em 0 0 0; }
-
-.data-field {
-    border: 1px solid #aaa;
-    padding: 4px 8px;
-    min-height: 24px;
-    display: inline-block;
-    vertical-align: bottom;
-    font-style: italic;
-    color: #0056b3;
-    background-color: #f8f9fa;
-}
-.large-field { display: block; text-align: center; padding: 10px; font-weight: bold; font-size: 11pt; }
-.large-textarea { display: block; min-height: 80px; white-space: pre-wrap; word-wrap: break-word; text-align: left; }
-
-.main-content section { margin-bottom: 15px; }
-.main-content section h4 { font-weight: bold; text-decoration: underline; margin-bottom: 1em; font-size: 10pt; }
-
-.incorporators-table { width: 100%; border-collapse: collapse; font-size: 9pt; }
-.incorporators-table th, .incorporators-table td { border: 1px solid black; padding: 5px; text-align: left; vertical-align: top; }
-.incorporators-table th { font-weight: bold; text-align: center; }
-.incorporators-table td { min-height: 35px; }
-
-.doc-footer { font-size: 8pt; margin-top: 2em; text-align: center; }
-
-/* --- General Content Styling (Pages 2 & 3) --- */
-.a4-page h4 { font-size: 12pt; font-weight: bold; margin: 1.5em 0 1em 0; text-decoration: underline;}
-.a4-page h5 { font-size: 11pt; font-weight: bold; margin: 1em 0; }
-.a4-page p { margin-bottom: 1em; line-height: 1.5; }
-.a4-page ol { padding-left: 2.5em; list-style-position: outside; }
-.a4-page ol li { margin-bottom: 0.5em; }
-
-/* Custom list styling to match document */
-.numeric-list { list-style-type: none; counter-reset: item; }
-.numeric-list > li { counter-increment: item; }
-.numeric-list > li::before { content: "(" counter(item) ") "; font-weight: normal; margin-left: -2.5em; position: absolute; }
-
-.alpha-list { list-style-type: none; counter-reset: item; }
-.alpha-list > li { counter-increment: item; }
-.alpha-list > li::before { content: "(" counter(item, lower-alpha) ") "; font-weight: normal; margin-left: -2.5em; position: absolute; }
-
-/* ADD THESE STYLES TO YOUR EXISTING pboapp/static/pboapp/css/preview.css FILE */
-
-/* --- CoR 14.1 Specific Layout --- */
+/* --- 4. Shared Styles for CoR 9.1 & 14.1 --- */
 .doc-header-main {
     text-align: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.5rem;
 }
-.doc-header-main h1 { font-size: 14pt; font-weight: bold; margin: 0; }
-.doc-header-main h2 { font-size: 12pt; margin: 0; }
-.doc-header-main h3 { font-size: 10pt; margin: 0; }
+
+.doc-header-main h1 {
+    font-size: 14pt;
+    font-weight: bold;
+}
+
+.doc-header-main h2 {
+    font-size: 11pt;
+}
+
+.doc-header-main h3 {
+    font-size: 10pt;
+}
+
 .doc-title-separator {
     border-bottom: 3px double black;
     margin: 0.5rem 0;
@@ -124,9 +75,10 @@
 
 .cor14-1-grid {
     display: grid;
-    grid-template-columns: 2.5fr 5fr; /* Ratio for sidebar and main content */
+    grid-template-columns: 2.5fr 5fr;
     gap: 1rem;
-    font-size: 10pt;
+    font-size: 8.5pt;
+    line-height: 1.3;
 }
 
 .cor14-1-sidebar {
@@ -136,30 +88,36 @@
     padding: 1rem;
     font-size: 8pt;
     line-height: 1.4;
-    align-self: start; /* Don't stretch sidebar to full height */
+    align-self: start;
 }
+
 .cor14-1-sidebar .sidebar-title-box {
     text-align: center;
     font-weight: bold;
     font-size: 12pt;
     margin-bottom: 1rem;
 }
+
 .cor14-1-sidebar ul {
     padding-left: 1rem;
 }
+
 .cor14-1-sidebar li {
     margin-bottom: 0.75rem;
 }
+
 .contact-box-14-1 {
     text-align: center;
     margin-top: 1rem;
 }
+
 .contact-box-14-1 h4 {
     font-size: 10pt;
     font-weight: bold;
     text-decoration: underline;
     margin-bottom: 0.5rem;
 }
+
 .contact-box-14-1 p {
     margin: 0.25rem 0;
 }
@@ -170,6 +128,7 @@
     margin-bottom: 0.5rem;
     gap: 0.5rem;
 }
+
 .main-content .form-row.multi-line {
     align-items: baseline;
 }
@@ -182,6 +141,7 @@
     font-style: italic;
     color: #0056b3;
 }
+
 .form-line-inline {
     border-bottom: 1px solid black;
     padding: 0 0.5rem;
@@ -189,35 +149,12 @@
     font-style: italic;
     color: #0056b3;
 }
+
 .form-line-inline.short {
     min-width: 100px;
     display: inline-block;
 }
 
-.incorporator-box {
-    border: 2px solid black;
-    padding: 0.5rem;
-    margin: 0.5rem 0 1.5rem 0;
-}
-.incorporator-box label {
-    font-weight: bold;
-}
-.incorporator-box small {
-    display: block;
-    font-style: italic;
-    font-size: 8pt;
-    margin-left: 1rem;
-}
-
-.form-section-14-1 p {
-    margin: 1.5rem 0 0.75rem 0;
-}
-.checkbox-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.5rem;
-    margin-left: 1rem;
-}
 .checkbox-placeholder {
     display: inline-block;
     width: 16px;
@@ -230,34 +167,78 @@
     font-weight: bold;
     color: #0056b3;
 }
-.form-section-14-1 > div {
-    margin-bottom: 0.5rem;
-    margin-left: 1rem;
-}
 
 .declaration-box {
-    border: 2px solid black;
     padding: 0.5rem;
-    margin-top: 2rem;
+}
+
+.bottom-box{
+    display: flex;
+    flex-direction: column;
+    font-size: 10px
 }
 .declaration-box p {
     margin: 0.5rem;
 }
+
 .signature-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
-    margin: 1rem 0.5rem;
 }
+
 .signature-grid label {
     font-weight: bold;
 }
+
 .signature-line {
-    border-bottom: 1px solid black;
-    height: 1.5em;
+    border: 1px solid black;
+    height: 2.5em;
     font-style: italic;
     color: #0056b3;
     padding: 0 0.5rem;
+}
+
+.commission-signature-line{
+    border-bottom: 1px solid black;
+    height: 2.5em;
+    font-style: italic;
+    color: #0056b3;
+    padding: 0 0.5rem;
+}
+
+.signature-pad-container {
+    position: relative;
+    border: 1px solid black;
+    height: 100px; /* You can adjust this height */
+}
+
+#signature-canvas {
+    width: 100%;
+    height: 100%;
+    display: block; /* Make it a block element */
+}
+
+#clear-signature-btn {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background: none;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+    font-size: 12px;
+    padding: 0;
+}
+#clear-signature-btn:hover {
+    text-decoration: underline;
+}
+
+/* Hide the final image on screen by default */
+#signature-image {
+    width: 100%;
+    height: 100%;
+    display: none; /* We will show this only for printing */
 }
 
 .commission-box {
@@ -265,6 +246,11 @@
     background-color: #f0f0f0;
     padding: 0.5rem;
     margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+.commission-cell{
+    width: 15rem;
 }
 .commission-box .box-title {
     font-weight: bold;
@@ -274,37 +260,43 @@
 .doc-footer-14-1 {
     font-size: 8pt;
     text-align: center;
-    margin-top: 1rem;
+    margin-top: 2rem;
 }
 
+
+/* --- 5. CoR 9.1 (Name Reservation) Specific Styles --- */
 .applicant-details-box {
     border: 2px solid black;
     padding: 0.5rem;
-    margin: 0.5rem 0 1.5rem 0;
+    margin: 0.5rem 0 0.5rem 0;
 }
+
 .applicant-details-box small {
     display: block;
     font-style: italic;
     font-size: 8pt;
     margin-bottom: 0.5rem;
 }
+
 .applicant-details-content {
-    /* Use pre-wrap to respect newlines from the textarea */
-    white-space: pre-wrap; 
-    min-height: 80px;
-    font-style: italic;
+    white-space: pre-wrap;
+    min-height: 70px;
+    font-size: 10pt;
+    line-height: 1.4;
     color: #0056b3;
     padding: 0.25rem;
 }
 
 .bordered-box {
     border: 2px solid black;
-    padding: 0.5rem 1rem;
+    padding: 0.25rem 1rem;
     margin-bottom: 1.5rem;
 }
+
 .bordered-box p {
     margin: 0.5rem 0;
 }
+
 .bordered-box small {
     display: block;
     font-style: italic;
@@ -312,37 +304,159 @@
     margin-bottom: 0.5rem;
 }
 
+
 .name-list {
     list-style-position: inside;
     padding-left: 0;
+    list-style: none;
+    /* Explicitly remove default bullets/numbers */
+    counter-reset: name-counter;
 }
+
+.name-list li::before {
+    counter-increment: name-counter;
+    /* Increase the counter by 1 for each li */
+    content: counter(name-counter) ".";
+    /* Display the counter value followed by a period */
+    font-weight: bold;
+    min-width: 1.5ch;
+    /* Reserve space for the number */
+}
+
 .name-list li {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    line-height: 1.6;
 }
+
 .name-list .form-line {
     flex-grow: 1;
     margin-bottom: 0.5rem;
+    font-size: 11pt;
+}
+.compliance-questions-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem; /* space-y-8 */
 }
 
-.compliance-table {
-    width: 100%;
-    table-layout: fixed;
-    border-collapse: collapse;
+.compliance-question {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.compliance-questions-container {
     margin-left: 1rem;
 }
-.compliance-table td {
-    padding: 0.75rem 0.5rem;
-    vertical-align: top;
+
+
+
+.compliance-options {
+    display: flex;
+    gap: 2rem;
+    padding-left: 1rem;
 }
-.compliance-table .option-cell {
-    width: 80px; /* Fixed width for Yes/No columns */
-    white-space: nowrap;
+
+.option-cell {
+    display: flex;
+    align-items: center;
 }
 
 .small-text {
     font-size: 9pt;
     font-style: italic;
-    margin: 0.5rem 0 1.5rem 1rem;
+    margin: 0.5rem 0rem 1rem;
+    line-height: 1.3;
+}
+
+
+/* --- 6. CoR 15.1C (MOI) Specific Styles --- */
+.a4-page .page-1-grid {
+    display: grid;
+    grid-template-columns: 2fr 5fr;
+    gap: 15px;
+}
+
+.a4-page .sidebar {
+    border-right: 2px solid black;
+    padding-right: 15px;
+    font-size: 8pt;
+}
+
+.a4-page .sidebar h3 {
+    font-size: 11pt;
+    font-weight: bold;
+}
+
+.a4-page .sidebar h4 {
+    font-size: 10pt;
+    font-weight: bold;
+}
+
+.a4-page .sidebar ul {
+    list-style-type: disc;
+    padding-left: 1.2em;
+}
+
+.a4-page .sidebar li {
+    margin-bottom: 0.8em;
+}
+
+.document-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid #333;
+    padding-bottom: 1rem;
+}
+
+.document-header h1 {
+    font-size: 18pt;
+    font-weight: bold;
+    margin: 0;
+}
+
+.document-header h2 {
+    font-size: 14pt;
+    font-weight: normal;
+    margin: 0.5rem 0;
+}
+
+.document-header h3 {
+    font-size: 12pt;
+    font-style: italic;
+    font-weight: normal;
+    margin: 0;
+}
+
+.document-section {
+    margin-bottom: 1.5rem;
+}
+
+.document-section h4 {
+    font-size: 14pt;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 0.25rem;
+}
+
+.document-section p {
+    margin-bottom: 1rem;
+}
+
+.data-placeholder {
+    color: #0056b3;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.document-footer {
+    margin-top: 3rem;
+    text-align: center;
+    font-size: 10pt;
+    color: #888;
+    border-top: 1px solid #ccc;
+    padding-top: 1rem;
 }

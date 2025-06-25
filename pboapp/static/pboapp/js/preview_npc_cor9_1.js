@@ -48,9 +48,46 @@ document.addEventListener('DOMContentLoaded', () => {
     // Populate Declaration Date
     setData('preview-declaration-date', data.declaration_date);
 
+    const canvas = document.getElementById('signature-canvas');
+    const signatureImage = document.getElementById('signature-image');
+    
+    // Adjust canvas size to fit its container
+    function resizeCanvas() {
+        const ratio = Math.max(window.devicePixelRatio || 1, 1);
+        canvas.width = canvas.offsetWidth * ratio;
+        canvas.height = canvas.offsetHeight * ratio;
+        canvas.getContext("2d").scale(ratio, ratio);
+    }
+    
+    // Initialize the signature pad
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
+    const signaturePad = new SignaturePad(canvas, {
+        backgroundColor: 'rgb(255, 255, 255)', // necessary for non-transparency
+        penColor: 'rgb(0, 0, 0)'
+    });
+
+    document.getElementById('clear-signature-btn').addEventListener('click', (event) => {
+        event.preventDefault();
+        signaturePad.clear();
+    });
+
     // --- Event Listeners for action buttons ---
     document.getElementById('edit-btn').addEventListener('click', () => window.history.back());
-    document.getElementById('print-btn').addEventListener('click', () => window.print());
+    document.getElementById('print-btn').addEventListener('click', () => {
+        // Before printing, convert the canvas drawing to an image
+        if (!signaturePad.isEmpty()) {
+            // Get the signature as a base64 encoded PNG
+            const dataURL = signaturePad.toDataURL('image/png');
+            // Set the src of our hidden image tag
+            signatureImage.src = dataURL;
+        } else {
+            // If the pad is empty, ensure the image src is also empty
+            signatureImage.src = '';
+        }
+        // Now, trigger the print dialog. The print.css will hide the canvas and show the image.
+        window.print();
+    });
     document.getElementById('confirm-btn').addEventListener('click', () => {
         const checklistId = 'npcChecklistStatus';
         const taskId = 'npc-name-reservation'; // Must match the ID in views.py

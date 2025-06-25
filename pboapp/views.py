@@ -17,7 +17,7 @@ def get_checklists():
                     'name': 'Register for a CIPC Customer Code', 
                     'details': 'Before you can submit any documents, you need a free customer code from the CIPC website. Once you have it, enter it here to auto-fill your forms.',
                     'link_text': 'Go to CIPC Website',
-                    'link_url': 'https://eservices.cipc.co.za/pages/login.aspx', # External link
+                    'link_url': 'https://eservices.cipc.co.za/Customer_register_id.aspx', # External link
                     'link_external': True, # A flag to tell the template it's an external link
                     'type': 'input_task', # A special type for our JS to handle
                     'required': True

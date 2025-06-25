@@ -1,91 +1,113 @@
-/* pboapp/static/pboapp/css/print.css */
+/* pboapp/static/css/print.css */
 
 @media print {
     /* Define the page size and margins for the printer */
     @page {
         size: A4;
-        margin: 18mm; /* A standard print margin */
+        margin: 10mm;
+    }
+    #document-container > *:first-child {
+        margin-top: 0 !important;
     }
 
-    /* Hide all application-specific UI elements (header, footer, buttons) */
-    body > header,
-    header.site-header,
-    body > footer,
-    footer.site-footer,
+    .doc-header-main {
+        margin-top: 0 !important;
+    }
+
+    /* 
+      NEW & CRITICAL: Reset the main document body.
+      This tells the browser to let content flow naturally across pages instead of
+      trying to render a "screenshot" of a scrollable element.
+    */
+    body, html {
+        overflow: visible !important;
+        height: auto !important;
+        background: none !important;
+    }
+
+    /* Hide all application-specific UI elements */
+    body > header, .site-header,
+    body > footer, .site-footer,
     #preview-action-bar,
     .debug-toolbar {
         display: none !important;
     }
 
-    /* Remove the grey background from the page wrapper */
+    /* Remove the grey background and padding from the main wrapper */
     .preview-page-wrapper {
         background: none !important;
         padding: 0 !important;
+        min-height: 0 !important;
+        height: auto !important;
     }
 
-    /* --- THIS IS THE KEY FIX FOR THE PAGE-BREAKING ISSUE --- */
+    /* 
+      THIS IS THE CRITICAL PART for PRINTING (and it was already correct!):
+      Completely reset the on-screen A4 page simulation.
+      This removes the box-shadow, padding, and fixed height.
+    */
     .a4-page {
-        /* Override all on-screen simulation styles */
-        width: 100% !important;
-        height: auto !important; /* Let content determine the height */
-        min-height: 0 !important; /* Remove the fixed minimum height */
+        width: auto !important;
+        height: auto !important;
+        min-height: 0 !important;
         margin: 0 !important;
         padding: 0 !important;
         box-shadow: none !important;
         border: none !important;
-        
-        /* This form should fit on one page, so we don't need page-break rules here */
+        background: none !important;
     }
 
-    /* Ensure all text is black and backgrounds are transparent */
+    /* The document itself should just flow naturally */
+    #document-container {
+        width: 100% !important;
+    }
+
+    
+
+    /* Ensure all text is black and backgrounds are transparent for printing */
     * {
         color: black !important;
         background: transparent !important;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
+        box-shadow: none !important; /* Good to add this for general cleanliness */
+        text-shadow: none !important; /* and this */
     }
 
-    /* --- Specific adjustments for CoR 14.1 Print Layout --- */
-    body {
-        font-size: 9.5pt; /* Slightly smaller font to ensure everything fits */
+    /* Print-specific visual tweaks for better fidelity */
+    .cor14-1-sidebar, .commission-box {
+        background-color: #f0f0f0 !important;
+        border: 2px solid black !important;
     }
-
-    .cor14-1-grid {
-        font-size: 9.5pt;
-    }
-
-    .cor14-1-sidebar {
-        background-color: #e9e9e9 !important; /* Use a light grey that prints well */
-        border: 1.5px solid black !important;
-        font-size: 7.5pt !important;
-    }
-
-    .incorporator-box,
-    .declaration-box,
-    .commission-box {
-        border: 1.5px solid black !important;
-    }
-    
-    .commission-box {
-        background-color: #e9e9e9 !important;
-    }
-
     .form-line, .form-line-inline {
-        border-bottom: 0.75px solid black !important;
-        color: black !important; /* Make data look like part of the form */
-        font-style: normal !important;
+        color: black !important;
         font-weight: bold;
     }
-
     .checkbox-placeholder {
-        border: 1px solid black !important;
-        font-size: 12pt;
-        line-height: 14px;
         color: black !important;
+        border: 1px solid black !important;
+    }
+    .bordered-box, .applicant-details-box {
+        border: 2px solid black !important;
     }
 
-    /* Prevent content from breaking in awkward places if possible */
-    .form-section-14-1 > div, .form-section-14-1 > p {
+    /* Prevent content from breaking awkwardly inside elements */
+    .form-section-14-1 > div, .form-section-14-1 > p, .compliance-table tr, .declaration-box, .bordered-box {
         page-break-inside: avoid;
+    }
+
+    /* Prevent page breaks right after a header */
+    h1, h2, h3, h4, h5, h6 {
+        page-break-after: avoid;
+    }
+
+    #signature-canvas,
+    #clear-signature-btn {
+        display: none !important;
+    }
+
+    /* Show the static image that holds the signature data */
+    #signature-image {
+        display: block !important;
     }
 }
