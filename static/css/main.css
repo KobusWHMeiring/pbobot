@@ -1,57 +1,75 @@
 /* static/css/main.css */
 
-/* --- 1. Define a Modern Color Palette and Root Variables --- */
+/* --- 1. Root Variables & Fonts --- */
 :root {
-    --color-primary: #005A9C; /* A professional, trustworthy blue */
-    --color-primary-dark: #003d69;
-    --color-secondary: #FDB813; /* A warm, optimistic yellow/gold for accents */
-    --color-background: #F8F9FA; /* A very light grey for the page background */
-    --color-surface: #FFFFFF;    /* White for card backgrounds */
-    --color-text-primary: #212529; /* Dark grey for text, not pure black */
-    --color-text-secondary: #6C757D; /* Lighter grey for subtitles and descriptions */
-    --color-border: #E9ECEF;
-    --font-primary: 'Public Sans', sans-serif;
-    --font-secondary: 'Noto Sans', sans-serif;
+    --color-primary: #2563EB;      /* A modern, accessible blue */
+    --color-primary-dark: #1D4ED8;
+    --color-background: #FFFFFF;
+    --color-surface: #F9FAFB;      /* Light grey for cards and sections */
+    --color-text-primary: #1F2937; /* Very dark grey, not pure black */
+    --color-text-secondary: #4B5563; /* Medium grey for subtitles */
+    --color-border: #E5E7EB;
+    --font-primary: 'Inter', 'Public Sans', sans-serif;
 }
 
-/* --- 2. General Body and Layout Styling --- */
-body {
+/* --- 2. General Body and Layout Reset --- */
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-primary);
     background-color: var(--color-background);
     color: var(--color-text-primary);
-    font-family: var(--font-primary);
-    margin: 0;
     line-height: 1.6;
 }
 
+/* 
+   This is the main layout container. 
+   We remove flexbox to allow normal document flow for the homepage,
+   which solves the scrolling and footer issues.
+*/
 .layout-container {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+    width: 100%;
+    overflow-x: hidden; /* Prevents horizontal scrollbars */
 }
 
+/* 
+   The main content area needs padding-top to not be hidden 
+   by the fixed header. This is the key fix.
+*/
 .main-content {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
+    padding-top: 72px; 
 }
 
-.content-wrapper {
+.container {
+    width: 100%;
     max-width: 1100px;
-    margin: 0 auto;
-    padding: 2rem 1.5rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+.text-center {
+    text-align: center;
 }
 
 /* --- 3. Header and Navigation --- */
 .site-header {
-    background-color: var(--color-surface);
+    background-color: var(--color-background);
     border-bottom: 1px solid var(--color-border);
-    padding: 1rem 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    height: 72px;
 }
 
 .logo-container {
@@ -59,28 +77,17 @@ body {
     align-items: center;
     gap: 0.75rem;
 }
-
-.logo-icon {
-    color: var(--color-primary);
-}
+.logo-icon { color: var(--color-primary); }
 
 .logo-text {
-    font-family: var(--font-secondary);
     font-size: 1.5rem;
     font-weight: 700;
-    margin: 0;
+    color: var(--color-text-primary);
+    text-decoration: none;
 }
 
-.header-nav {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-}
-
-.nav-links {
-    display: flex;
-    gap: 1.5rem;
-}
+.header-nav { display: flex; align-items: center; gap: 1.5rem; }
+.nav-links { display: flex; gap: 1.5rem; }
 
 .nav-links a {
     text-decoration: none;
@@ -88,203 +95,409 @@ body {
     font-weight: 500;
     transition: color 0.2s ease-in-out;
 }
-
-.nav-links a:hover {
-    color: var(--color-primary);
-}
+.nav-links a:hover { color: var(--color-primary); }
 
 /* --- 4. Buttons --- */
 .btn {
     border: none;
     padding: 0.6rem 1.2rem;
-    border-radius: 6px;
+    border-radius: 0.5rem;
     font-weight: 700;
     cursor: pointer;
-    transition: all 0.2s ease-in-out;
-    text-decoration: none; /* For <a> tags styled as buttons */
-    display: inline-block; /* For <a> tags */
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
 }
 
-.btn-primary, .btn-primary-style {
+.btn-primary {
     background-color: var(--color-primary);
     color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-
-.btn-primary:hover, .btn-primary-style:hover {
+.btn-primary:hover {
     background-color: var(--color-primary-dark);
     transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 7px 14px rgba(0, 0, 0, 0.1);
 }
+.btn-large { padding: 0.75rem 2rem; }
 
-.btn-secondary, .btn-secondary-style {
-    background-color: var(--color-surface);
-    color: var(--color-primary);
-    border: 1px solid var(--color-border);
-}
-
-.btn-secondary:hover, .btn-secondary-style:hover {
-    background-color: #f1f3f5;
-    border-color: #dee2e6;
-}
-
-.btn-large {
-    padding: 0.8rem 2rem;
-    font-size: 1.1rem;
-}
-
-/* --- 5. Homepage Specific Hero Section --- */
-.hero-container-wrapper {
-    background-color: var(--color-surface);
-    border-radius: 12px;
-    margin-bottom: 2rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-
-.hero-padding {
-    padding: 4rem 2rem;
-}
-
+/* --- 5. Homepage Sections --- */
 .hero-section {
-    text-align: center;
+    background-color: var(--color-surface);
+    padding: 2rem 0;
 }
 
 .hero-title {
-    font-family: var(--font-secondary);
-    font-size: 3.5rem;
-    font-weight: 900;
+    font-size: 3rem;
+    font-weight: 700;
     line-height: 1.2;
-    margin-bottom: 1rem;
-    color: var(--color-text-primary);
+    margin-bottom: 1.5rem;
 }
 
 .hero-subtitle {
-    font-size: 1.25rem;
-    font-weight: 400;
+    font-size: 1.125rem;
     color: var(--color-text-secondary);
-    max-width: 750px;
+    max-width: 42rem;
     margin: 0 auto 2.5rem auto;
+    line-height: 1.75;
 }
 
-/* --- 6. Generic Content and Steps Grid --- */
-.content-heading {
-    font-family: var(--font-secondary);
-    font-size: 2.5rem;
+.features-section { padding: 2rem 0; }
+
+.section-title {
+    font-size: 2.25rem;
     font-weight: 700;
-    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.section-subtitle {
+    font-size: 1.125rem;
+    color: var(--color-text-secondary);
+    max-width: 48rem;
+    margin: 0 auto 4rem auto;
+    line-height: 1.75;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+    max-width: 56rem;
+    margin: 0 auto;
+}
+
+.feature-card {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    text-align: left;
+    border: 1px solid var(--color-border);
+}
+.feature-card:hover {
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.07);
+    transform: translateY(-4px);
+}
+
+.feature-card-header {
+    display: flex;
+    align-items: center;
     margin-bottom: 1rem;
 }
 
-.content-paragraph, .content-paragraph-centered {
-    font-size: 1.1rem;
-    color: var(--color-text-secondary);
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 3rem;
-}
-.content-paragraph-centered { text-align: center; }
-
-.steps-grid {
-    display: grid;
-    grid-template-columns: 40px 1fr;
-    gap: 0.5rem 1.5rem;
-    max-width: 800px;
-    margin: 0 auto 3rem auto;
-}
-
-.step-timeline {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.step-timeline .icon {
+.feature-card-number {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 9999px;
     background-color: var(--color-primary);
-    color: white;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
+    color: #ffffff;
+    font-size: 1.25rem;
+    font-weight: 700;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-right: 1rem;
     flex-shrink: 0;
 }
 
-.step-timeline .line {
-    width: 2px;
-    background-color: var(--color-border);
-    flex-grow: 1;
-}
-/* Hide the lines for the first and last items */
-.steps-grid > .step-timeline:first-of-type .top-line,
-.steps-grid > .step-timeline:last-of-type .bottom-line {
-    background-color: transparent;
-}
-
-.step-content {
-    padding-bottom: 2rem;
-}
-.step-content .title {
+.feature-card-title {
     font-size: 1.25rem;
-    font-weight: 700;
-    margin: 0 0 0.25rem 0;
+    font-weight: 600;
 }
-.step-content .description {
+.feature-card-description {
     color: var(--color-text-secondary);
-    margin: 0;
+    line-height: 1.6;
 }
 
-.final-cta-container {
-    text-align: center;
-    margin-top: 2rem;
+.final-cta-container { margin-top: 5rem; text-align: center; }
+
+/* --- 6. Tool-Specific Pages (Checklist, Forms, etc.) --- */
+/* This wrapper is for non-homepage pages to center their content */
+.content-wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
 }
+
+.checklist-card, .form-card, .results-container-new {
+    background-color: #ffffff;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--color-border);
+    width: 100%;
+    max-width: 48rem;
+    margin: 0 auto;
+    padding: 2rem 2.5rem;
+}
+.form-card { max-width: 960px; }
+
+.checklist-header, .results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+}
+.results-header { flex-direction: column; align-items: center; text-align: center; }
+
+.checklist-title, .form-title {
+    font-size: 1.875rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.checklist-description, .form-description {
+    color: var(--color-text-secondary);
+    margin-bottom: 2rem;
+}
+/* Styles for checklist items, form groups, etc. go here */
+
+
+/* --- 7. Footer --- */
+.site-footer {
+    background-color: #1F2937;
+    color: #D1D5DB;
+    padding: 1px;
+
+    text-align: center;
+    margin-top: auto; /* Pushes footer to the bottom */
+}
+.footer-subtitle {
+
+    font-size: 0.875rem;
+    color: #9CA3AF;
+}
+
+/* --- 8. Responsive Adjustments --- */
+@media (max-width: 768px) {
+    .hero-title { font-size: 2.25rem; }
+    .section-title { font-size: 1.875rem; }
+    .features-grid { grid-template-columns: 1fr; }
+    .header-nav { display: none; }
+}
+
+html, body {
+    height: 100%;
+}
+body {
+    display: flex;
+    flex-direction: column;
+}
+.main-content {
+    flex: 1 0 auto; /* This forces the main content to take up available space, pushing the footer down */
+}
+.site-footer {
+    flex-shrink: 0; /* Prevents the footer from shrinking */
+}
+
+/* New style for the grey background on tool pages */
+.tool-page-section {
+    background-color: var(--color-surface);
+    padding: 4rem 1.5rem;
+    flex-grow: 1; /* Make the grey area fill the screen height */
+    display: flex;
+}
+
+/* --- 10. Structure Selector Styles (Unified) --- */
+.tool-container {
+    width: 100%;
+    max-width: 56rem; /* 896px */
+    margin: 0 auto; /* Center the container within the grey section */
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+/* Explainer Screen */
+.explainer-intro { text-align: center; }
+.explainer-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+.explainer-subtitle {
+    color: var(--color-text-secondary);
+    font-size: 1.125rem;
+    line-height: 1.6;
+    max-width: 48rem;
+    margin: 0 auto;
+}
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+.info-card {
+    border-radius: 0.75rem;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-background);
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+.info-card-heading {
+    margin-bottom: 0.75rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+.info-card-description {
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+    line-height: 1.6;
+}
+.explainer-cta-wrapper {
+    display: flex;
+    justify-content: center;
+    padding-top: 1rem;
+}
+
+/* Qualifier Form Screen */
+.qualifier-form-container {
+    background-color: var(--color-background);
+    padding: 2rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 15px rgba(0,0,0,0.07);
+    width: 100%;
+    max-width: 42rem;
+    margin: 0 auto;
+    border: 1px solid var(--color-border);
+}
+.qualifier-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.qualifier-title {
+    font-size: 1.875rem;
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 0.5rem;
+}
+.qualifier-description {
+    color: var(--color-text-secondary);
+}
+.qualifier-form > div { margin-bottom: 2rem; }
+.form-section-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+}
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+.radio-label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    border-radius: 0.5rem;
+    border: 1px solid #cbd5e1;
+    padding: 1rem;
+    cursor: pointer;
+    transition: all 150ms;
+}
+.radio-label:hover { border-color: #94a3b8; }
+.radio-label:has(.radio-custom:checked) {
+    border-color: var(--color-primary);
+    background-color: #EFF6FF; /* Blue 50 */
+}
+.radio-custom {
+    appearance: none;
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 2px solid #cbd5e1;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+.radio-custom:checked {
+    border-color: var(--color-primary);
+    background-image: url('data:image/svg+xml,%3csvg viewBox=%270 0 16 16%27 fill=%27%232563EB%27 xmlns=%27http://www.w3.org/2000/svg%27%3e%3ccircle cx=%278%27 cy=%278%27 r=%274%27/%3e%3c/svg%3e');
+}
+.radio-label-text { font-weight: 500; }
+.form-actions {
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+/* Responsive adjustments for info grid */
+@media (max-width: 1024px) {
+    .info-grid { grid-template-columns: 1fr; }
+}
+
+
+/* --- 11. Structure Selector Results Screen Styles --- */
 
 .results-container-new {
-    background-color: var(--color-surface);
-    border-radius: 12px;
-    padding: 2.5rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    background-color: var(--color-background);
+    border-radius: 0.75rem;
+    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04); /* shadow-2xl */
+    width: 100%;
+    max-width: 52rem; /* Wider for two columns */
+    margin: 0 auto;
+    padding: 0; /* Remove padding to allow header to be full-width */
+    border: 1px solid var(--color-border);
+    overflow: hidden; /* Important for the rounded corners on the header */
 }
 
-.results-header .results-description {
-    color: var(--color-text-secondary);
-    max-width: 750px;
-    margin: 0.5rem auto 0 auto;
-    font-size: 1.1rem;
+.results-header {
+    background-color: #1E293B; /* slate-800 */
+    color: var(--color-background);
+    text-align: center;
+    padding: 2rem;
+    margin: 0;
+}
+.results-header-eyebrow {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #94A3B8; /* slate-400 */
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+}
+.results-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+}
+.results-description {
+    color: #E2E8F0; /* slate-200 */
+    max-width: 42rem;
+    margin: 0 auto;
+    line-height: 1.6;
 }
 
 .results-detail-grid {
     display: grid;
+    grid-template-columns: 1fr; /* Default to single column */
     gap: 2rem;
-    margin-top: 2.5rem;
+    padding: 2rem;
 }
-
-/* Make it a 2-column grid on larger screens */
+/* Switch to two columns on larger screens */
 @media (min-width: 768px) {
     .results-detail-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 3rem;
     }
 }
 
 .results-list-heading {
-    font-size: 1.25rem; /* text-xl */
-    font-weight: 600; /* font-semibold */
-    color: var(--color-text-primary); /* text-slate-700 */
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
     margin-bottom: 1rem;
     display: flex;
     align-items: center;
+    gap: 0.5rem;
 }
-
-.results-list-heading .material-icons-outlined {
-    margin-right: 0.5rem;
+.results-list-heading .icon-pro {
+    color: #22C55E; /* green-500 */
 }
-
-.icon-pro {
-    color: #22c55e; /* green-500 */
-}
-.icon-con {
-    color: #ef4444; /* red-500 */
+.results-list-heading .icon-con {
+    color: #EF4444; /* red-500 */
 }
 
 .results-item-list {
@@ -293,168 +506,273 @@ body {
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 0.75rem; /* space-y-3 */
+    gap: 0.75rem;
 }
-
 .results-item {
     display: flex;
     align-items: flex-start;
-    color: var(--color-text-secondary); /* text-slate-600 */
-    font-size: 0.95rem; /* text-sm */
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
     line-height: 1.5;
 }
-
 .results-item-icon {
-    color: var(--color-primary); /* text-sky-500 */
+    color: var(--color-primary);
     margin-right: 0.75rem;
-    font-size: 1rem !important; /* text-base */
-    margin-top: 0.125rem; /* mt-0.5 adjustment */
+    font-size: 0.75rem !important; /* Smaller icon */
+    margin-top: 0.25rem;
 }
 
 .results-actions-final {
-    margin-top: 2.5rem; /* mt-10 */
+    margin-top: 1rem;
+    padding: 0 2rem 2rem 2rem; /* Add padding here */
     text-align: center;
 }
-
 .results-start-over-link {
     display: block;
-    margin-top: 1rem; /* mt-4 */
+    margin-top: 1rem;
     color: var(--color-primary);
     font-weight: 500;
-    text-decoration: none;
+    text-decoration: underline;
     background: none;
     border: none;
     cursor: pointer;
-    font-size: 0.9rem;
+    font-size: 0.875rem;
     transition: color 0.3s ease;
 }
-
 .results-start-over-link:hover {
     color: var(--color-primary-dark);
-    text-decoration: underline;
 }
 
-/* Also, let's update the button to match the design */
-.btn-large {
-    padding: 0.8rem 2rem;
-    font-size: 1rem; /* Adjusted size */
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); /* shadow-md */
-}
+/* ADD THIS TO THE END OF pboapp/static/css/main.css */
 
-.content-wrapper-checklist {
-    width: 100%;
-    padding: 2rem 1.5rem; /* Padding for mobile */
-}
+/* --- 12. Checklist Page Styles --- */
 
 .checklist-card {
-    background-color: var(--color-surface);
-    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); /* shadow-xl */
+    background-color: var(--color-background);
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1); /* shadow-xl */
     border-radius: 0.75rem; /* rounded-xl */
     width: 100%;
     max-width: 48rem; /* max-w-2xl */
     margin: 0 auto;
-    padding: 2rem 2.5rem; /* p-8 md:p-10 */
+    padding: 2.5rem;
+    border: none;
 }
 
 .checklist-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 1.5rem; /* mb-6 */
+    margin-bottom: 1.5rem;
 }
 
 .checklist-title {
-    font-size: 1.875rem; /* text-3xl */
+    font-size: 1.875rem;
     font-weight: 700;
-    color: #1f2937; /* gray-800 */
     line-height: 1.2;
 }
 
 .checklist-close-button {
-    color: #9ca3af; /* gray-400 */
+    color: #9CA3AF; /* gray-400 */
     background: none;
     border: none;
     cursor: pointer;
     transition: color 0.2s ease-in-out;
 }
 .checklist-close-button:hover {
-    color: #4b5563; /* gray-600 */
+    color: var(--color-text-secondary);
 }
 
 .checklist-description {
-    color: #4b5563; /* gray-600 */
-    margin-bottom: 2rem; /* mb-8 */
-    font-size: 1rem; /* text-base */
+    color: var(--color-text-secondary);
+    margin-bottom: 2rem;
 }
 
 .checklist-item-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem; /* space-y-6 */
+    gap: 1.5rem;
 }
 
 .checklist-item-card {
     display: flex;
     align-items: anchor-center;
-    gap: 1rem; /* space-x-4 */
-    padding: 1rem; /* p-4 */
-    background-color: #f9fafb; /* bg-gray-50 */
-    border-radius: 0.5rem; /* rounded-lg */
-    border: 1px solid var(--color-border); /* border-gray-200 */
+    gap: 1rem;
+    padding: 1rem;
+    background-color: var(--color-surface);
+    border-radius: 0.5rem;
+    border: 1px solid var(--color-border);
+    transition: all 0.3s ease-in-out;
+    border-left: 4px solid transparent;
 }
 
-.checklist-item-icon {
-    margin-top: 0.25rem; /* mt-1 */
+.checklist-item-card.is-complete {
+    background-color: #F0FDF4; /* A light green background */
+    border-left-color: #22C55E; /* green-500 */
 }
 
-.checklist-item-icon.icon-complete {
-    color: var(--color-primary); /* text-blue-600 */
+.checklist-toggle-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    color: #9CA3AF; /* Default pending color */
+    display: flex;
+    align-items: center;
+    margin-top: 0.25rem;
 }
 
-.checklist-item-icon.icon-pending {
-    color: #9ca3af; /* text-gray-400 */
+.checklist-item-card.is-complete .checklist-toggle-btn {
+    color: #22C55E; /* green-500 */
 }
+
+.checklist-item-content { flex-grow: 1; }
 
 .checklist-item-title {
-    font-size: 1.125rem; /* text-lg */
+    font-size: 1.125rem;
     font-weight: 600;
-    color: #1f2937; /* gray-800 */
 }
 
 .checklist-item-details {
-    color: #4b5563; /* gray-600 */
-    font-size: 0.875rem; /* text-sm */
-    margin-top: 0.25rem; /* mt-1 */
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
 }
 
 .checklist-item-action-link {
     display: inline-flex;
     align-items: center;
-    font-size: 0.875rem; /* text-sm */
-    color: var(--color-primary); /* text-blue-600 */
+    gap: 0.25rem;
+    font-size: 0.875rem;
+    color: var(--color-primary);
     font-weight: 500;
-    margin-top: 0.5rem; /* mt-2 */
+    margin-top: 0.5rem;
     text-decoration: none;
     transition: color 0.2s ease-in-out;
 }
-
 .checklist-item-action-link:hover {
-    color: var(--color-primary-dark); /* hover:text-blue-800 */
+    color: var(--color-primary-dark);
 }
-
 .checklist-item-action-link .material-icons-outlined {
-    font-size: 1rem !important; /* text-sm */
-    margin-left: 0.25rem; /* ml-1 */
+    font-size: 1.25rem;
 }
 
 .checklist-footer {
-    margin-top: 2.5rem; /* mt-10 */
+    margin-top: 2.5rem;
     display: flex;
     justify-content: flex-end;
 }
 
-/* Ensure footer button styles align with the main button */
-.checklist-footer .btn {
-    display: inline-flex;
+#compile-btn:disabled {
+    background-color: #D1D5DB; /* gray-300 */
+    color: #6B7280; /* gray-500 */
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+/* ADD THIS TO THE END OF pboapp/static/css/main.css */
+
+/* --- 13. CoR 9.1 Compliance Question Styles --- */
+
+.compliance-questions-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem; /* space-y-8 */
+}
+
+.compliance-question {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.question-number {
+    color: var(--color-text-secondary);
+    font-weight: 500;
+    width: 2rem; /* w-8 */
+    flex-shrink: 0;
+    margin-top: 0.25rem;
+}
+
+.question-content {
+    flex-grow: 1;
+}
+
+.question-text {
+    color: var(--color-text-primary);
+    margin: 0 0 0.75rem 0;
+}
+
+.question-options {
+    display: flex;
+    gap: 1.5rem; /* space-x-6 */
+}
+
+.question-options label {
+    display: flex;
     align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.question-options input[type="radio"] {
+    width: 1.25rem; /* h-5 w-5 */
+    height: 1.25rem;
+    accent-color: var(--color-primary); /* Modern way to color radios/checkboxes */
+}
+
+.question-options span {
+    color: var(--color-text-primary);
+}
+
+
+/* --- Tooltip Styles --- */
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted var(--color-primary);
+    color: var(--color-primary);
+    cursor: help;
+}
+
+.tooltip .tooltip-text {
+    visibility: hidden;
+    width: 300px;
+    background-color: #333;
+    color: #fff;
+    text-align: left;
+    border-radius: 6px;
+    padding: 1rem;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; /* Position above the text */
+    left: 50%;
+    margin-left: -150px; /* Use half of the width to center */
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+/* Tooltip arrow */
+.tooltip .tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+.tooltip .tooltip-text strong {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--color-secondary); /* Use your accent color */
 }

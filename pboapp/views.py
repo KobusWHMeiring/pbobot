@@ -13,11 +13,21 @@ def get_checklists():
             'description': 'Use this dashboard to generate documents and track your progress. Once all required steps are complete, you can compile your application.',
             'items': [
                 {
+                    'id': 'npc-cipc-code', # New unique ID
+                    'name': 'Register for a CIPC Customer Code', 
+                    'details': 'Before you can submit any documents, you need a free customer code from the CIPC website. Once you have it, enter it here to auto-fill your forms.',
+                    'link_text': 'Go to CIPC Website',
+                    'link_url': 'https://eservices.cipc.co.za/pages/login.aspx', # External link
+                    'link_external': True, # A flag to tell the template it's an external link
+                    'type': 'input_task', # A special type for our JS to handle
+                    'required': True
+                },
+                {
                     'id': 'npc-name-reservation', # Unique ID for this task
                     'name': 'Name Reservation (COR 9.1)', 
                     'details': 'Reserve your proposed company name with CIPC. You can submit a few options.',
                     'link_text': 'Generate Name Reservation Form', # Button text
-                    'link_url': '#', # Placeholder for the generator URL
+                    'link_url': reverse('pboapp:generate_npc_cor9_1'), 
                     'required': True # Is this task required for completion?
                 },
                 {
@@ -33,7 +43,7 @@ def get_checklists():
                     'name': 'Notice of Incorporation (COR 14.1)', 
                     'details': 'Includes details of initial directors, registered address, etc.',
                     'link_text': 'Generate Notice of Incorporation',
-                    'link_url': '#', # Placeholder
+                    'link_url': reverse('pboapp:generate_npc_cor14_1'), 
                     'required': True
                 },
                 {
@@ -161,3 +171,21 @@ def generate_npc_moi_view(request):
 def preview_npc_moi_view(request):
     """Renders the MOI preview page."""
     return render(request, 'pboapp/preview_npc_moi.html')
+
+def generate_npc_cor14_1_view(request):
+    """Renders the CoR 14.1 generation form."""
+    # We are reusing the design from the previous step. Let's create the template file now.
+    return render(request, 'pboapp/generate_npc_cor14_1.html')
+
+def preview_npc_cor14_1_view(request):
+    """Renders the CoR 14.1 preview page."""
+    # We are reusing the design from the previous step. Let's create the template file now.
+    return render(request, 'pboapp/preview_npc_cor14_1.html')
+
+def generate_npc_cor9_1_view(request):
+    """Renders the CoR 9.1 generation form."""
+    return render(request, 'pboapp/generate_npc_cor9_1.html')
+
+def preview_npc_cor9_1_view(request):
+    """Renders the CoR 9.1 preview page."""
+    return render(request, 'pboapp/preview_npc_cor9_1.html')

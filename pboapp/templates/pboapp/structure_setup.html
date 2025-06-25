@@ -1,19 +1,17 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}{{ checklist.title|default:"Checklist" }} - PBOBot{% endblock title %}
+{% block title %}{{ checklist.title|default:"Checklist" }} - Amicus NPO{% endblock title %}
 
-{% block page_specific_css %}
-<link rel="stylesheet" href="{% static 'pboapp/css/structure_selector.css' %}">
-{% endblock %}
+{# We will remove the link to the separate CSS file #}
 
 {% block content %}
-<div class="content-wrapper-checklist">
+<section class="tool-page-section">
     {% if checklist %}
     <div class="checklist-card">
         <div class="checklist-header">
             <h1 class="checklist-title">{{ checklist.title }}</h1>
-            <a href="#" onclick="window.history.back(); return false;" class="checklist-close-button">
+            <a href="#" onclick="window.history.back(); return false;" class="checklist-close-button" title="Go back">
                 <span class="material-icons-outlined">close</span>
             </a>
         </div>
@@ -21,32 +19,49 @@
 
         <div class="checklist-item-wrapper">
             {% for item in checklist.items %}
-            <!-- The main container for each task, with its unique ID -->
-            <div class="checklist-item-card" data-task-id="{{ item.id }}" data-required="{{ item.required }}">
-                <!-- Make the icon a button for manual toggling -->
-                <button class="checklist-toggle-btn">
-                    <span class="material-icons-outlined checklist-item-icon">radio_button_unchecked</span>
-                </button>
-                <div class="checklist-item-content">
-                    <h2 class="checklist-item-title">{{ item.name }}</h2>
-                    <p class="checklist-item-details">{{ item.details }}</p>
-                    {% if item.link_url %}
-                    <!-- The action link now has a data attribute pointing to the generator -->
-                    <a class="checklist-item-action-link" href="{{ item.link_url }}" data-generator-url="{{ item.link_url }}">
-                        {{ item.link_text }}
-                        <span class="material-icons-outlined">navigate_next</span>
-                    </a>
-                    {% endif %}
-                </div>
-            </div>
-            {% endfor %}
+                {% if item.type == 'input_task' %}
+                    <!-- Special render for the CIPC Code task -->
+                    <div class="checklist-item-card" data-task-id="{{ item.id }}">
+                        <div class="checklist-item-content" style="width:100%;">
+                            <h2 class="checklist-item-title">{{ item.name }}</h2>
+                            <p class="checklist-item-details">{{ item.details }}</p>
+                            <div class="input-task-wrapper">
+                                <input type="text" id="cipc-code-input" placeholder="Enter your CIPC Code">
+                                <button id="save-cipc-code-btn" class="btn btn-primary">Save</button>
+                                {% if item.link_url %}
+                                <a href="{{ item.link_url }}" target="_blank" class="external-link">{{ item.link_text }} <span class="material-icons-outlined">open_in_new</span></a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <!-- Standard render for all other tasks -->
+                    <div class="checklist-item-card" data-task-id="{{ item.id }}" data-required="{{ item.required }}">
+                        <button class="checklist-toggle-btn">
+                            <span class="material-icons-outlined checklist-item-icon">radio_button_unchecked</span>
+                        </button>
+                        <div class="checklist-item-content">
+                            <h2 class="checklist-item-title">{{ item.name }}</h2>
+                            <p class="checklist-item-details">{{ item.details }}</p>
+                            {% if item.link_url %}
+                            <a class="checklist-item-action-link" href="{{ item.link_url }}"
+                                data-generator-url="{{ item.link_url }}"
+                                data-preview-url="{{ item.preview_url }}" {# Make sure this is in your view data #}
+                                data-original-text="{{ item.link_text }}">
+                                {{ item.link_text }}
+                                <span class="material-icons-outlined">navigate_next</span>
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endif %} 
+            {% endfor %} 
         </div>
 
         <div class="checklist-footer">
-            <!-- The final call to action, disabled by default -->
             <button id="compile-btn" class="btn btn-primary btn-large" disabled>
                 Compile Application Documents
-                <span class="material-icons-outlined" style="font-size: 1.25rem; margin-left: 0.5rem;">email</span>
+                <span class="material-icons-outlined">email</span>
             </button>
         </div>
     </div>
@@ -55,14 +70,13 @@
         <h1 class="checklist-title">Checklist Not Found</h1>
         <p class="checklist-description">The requested checklist could not be found. Please return home and start over.</p>
         <div class="checklist-footer">
-            <a href="{% url 'home' %}" class="btn btn-primary">Back to Home</a>
+            <a href="{% url 'pages:home' %}" class="btn btn-primary">Back to Home</a>
         </div>
     </div>
     {% endif %}
-</div>
+</section>
 {% endblock content %}
 
 {% block extra_scripts %}
-<!-- Link to our new dashboard JavaScript file -->
 <script src="{% static 'pboapp/js/structure_setup.js' %}"></script>
 {% endblock %}

@@ -29,21 +29,20 @@
 <body>
     <div class="layout-container">
         <header class="site-header">
-            <div class="logo-container">
-                <div class="logo-icon">
-                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z" fill="currentColor"></path></svg>
+            <div class="container header-container">
+                    <div class="logo-container">
+                        <!-- The logo text is now the main brand identifier -->
+                        <a href="{% url 'pages:home' %}" class="logo-text">Amicus NPO</a>
+                    </div>
+                    <nav class="header-nav">
+                        <div class="nav-links">
+                            <a href="{% url 'pages:home' %}">Home</a>
+                            <a href="{% url 'pboapp:structure_selector' %}">Structure Selector</a>
+                            <a href="{% url 'pboapp:structure_setup' 'npc' %}">Register an NPO</a>
+                        </div>
+                    </nav>
                 </div>
-                <!-- UPDATED NAME -->
-                <h2 class="logo-text">Amicus NPO</h2>
-            </div>
-            <nav class="header-nav">
-                <div class="nav-links">
-                    <a href="{% url 'pages:home' %}">Home</a>
-                    <a href="{% url 'pboapp:structure_selector' %}">Structure Selector</a>
-                </div>
-
-            </nav>
-        </header>
+            </header>
 
         <main class="main-content">
             {% block content %}
@@ -51,9 +50,15 @@
             {% endblock content %}
         </main>
 
+        <footer class="site-footer">
+            <div class="container">
+                <p>© {% now "Y" %} Amicus NPO. All rights reserved.</p>
+                <p class="footer-subtitle">Simplifying non-profit registration in South Africa.</p>
+            </div>
+        </footer>
+
         {% block extra_scripts %}
         {% endblock extra_scripts %}
-        <!-- A proper footer can be added here later -->
 
     </div>
 </body>

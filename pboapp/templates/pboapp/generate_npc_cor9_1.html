@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Name Reservation (CoR 9.1) Generator - PBOBot{% endblock title %}
+
+{% block page_specific_css %}
+<link rel="stylesheet" href="{% static 'pboapp/css/generator_form.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="content-wrapper">
+    <div class="form-card">
+        <h1 class="form-title">Application to Reserve a Name (CoR 9.1)</h1>
+        <p class="form-description">Complete the details below to generate your name reservation application. List your proposed names in order of preference.</p>
+        
+        <form id="cor9-1-form" novalidate data-preview-url="{% url 'pboapp:preview_npc_cor9_1' %}">
+            
+            <fieldset class="form-section">
+                <legend>Applicant Details</legend>
+                <div class="form-group">
+                    <label for="applicant_name">Applicant Name:</label>
+                    <div class="input-wrapper"><input type="text" id="applicant_name" name="applicant_name" required></div>
+                </div>
+                <div class="form-group">
+                    <label for="customer_code">CIPC Customer Code:</label>
+                    <div class="input-wrapper"><input type="text" id="customer_code" name="customer_code"></div>
+                </div>
+                <div class="form-group textarea-group">
+                    <label for="applicant_details">Full Details of Applicant:</label>
+                    <div class="input-wrapper">
+                        <textarea id="applicant_details" name="applicant_details" rows="4" required placeholder="Full Name, Identity/Registration Number, and Full Address"></textarea>
+                        <small>This information will appear in the box below the "Customer Code".</small>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset class="form-section">
+                <legend>Proposed Names</legend>
+                <div class="form-group"><label for="proposed_name_1">1)</label><div class="input-wrapper"><input type="text" id="proposed_name_1" name="proposed_name_1" required placeholder="First choice name"></div></div>
+                <div class="form-group"><label for="proposed_name_2">2)</label><div class="input-wrapper"><input type="text" id="proposed_name_2" name="proposed_name_2" placeholder="Second choice name"></div></div>
+                <div class="form-group"><label for="proposed_name_3">3)</label><div class="input-wrapper"><input type="text" id="proposed_name_3" name="proposed_name_3" placeholder="Third choice name"></div></div>
+                <div class="form-group"><label for="proposed_name_4">4)</label><div class="input-wrapper"><input type="text" id="proposed_name_4" name="proposed_name_4" placeholder="Fourth choice name"></div></div>
+            </fieldset>
+
+            <fieldset class="form-section">
+                <legend>Compliance Questions</legend>
+                <div class="compliance-questions-wrapper">
+                    <!-- Question (a) -->
+                    <div class="compliance-question">
+                        <div class="question-number">(a)</div>
+                        <div class="question-content">
+                            <p class="question-text">Include any word in a language that is not an official language of the Republic?</p>
+                            <div class="question-options">
+                                <label><input type="radio" name="q_a" value="yes" required><span>Yes</span></label>
+                                <label><input type="radio" name="q_a" value="no" checked><span>No</span></label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Question (b) -->
+                    <div class="compliance-question">
+                        <div class="question-number">(b)</div>
+                        <div class="question-content">
+                            <p class="question-text">Include any word, number or element that constitutes a registered or well-known trade mark?</p>
+                            <div class="question-options">
+                                <label><input type="radio" name="q_b" value="yes" required><span>Yes</span></label>
+                                <label><input type="radio" name="q_b" value="no" checked><span>No</span></label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Question (c) with Tooltips -->
+                    <div class="compliance-question">
+                        <div class="question-number">(c)</div>
+                        <div class="question-content">
+                            <p class="question-text">
+                                Fall within the category of names restricted in terms of 
+                                <span class="tooltip">section 11 (2) (c)
+                                    <span class="tooltip-text">
+                                        <strong>Summary of Section 11(2)(c):</strong> A name cannot falsely suggest it is associated with another person, the government, an international body, or someone with a special educational status.
+                                    </span>
+                                </span> 
+                                of the Companies Act, or 
+                                <span class="tooltip">Regulation 8 (5)?
+                                    <span class="tooltip-text">
+                                        <strong>Summary of Regulation 8(5):</strong> If the name is already registered as a business name under the Consumer Protection Act, you must provide proof that you have the right to use or transfer that name.
+                                    </span>
+                                </span>
+                            </p>
+                            <div class="question-options">
+                                <label><input type="radio" name="q_c" value="yes" required><span>Yes</span></label>
+                                <label><input type="radio" name="q_c" value="no" checked><span>No</span></label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Question (d) -->
+                    <div class="compliance-question">
+                        <div class="question-number">(d)</div>
+                        <div class="question-content">
+                            <p class="question-text">Is any proposed name similar to that of another company, CC, or co-operative?</p>
+                            <div class="question-options">
+                                <label><input type="radio" name="q_d" value="yes" required><span>Yes</span></label>
+                                <label><input type="radio" name="q_d" value="no" checked><span>No</span></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            
+            <fieldset class="form-section">
+                <legend>Declaration</legend>
+                <div class="form-group"><label for="declaration_date">Date of Signing:</label><div class="input-wrapper"><input type="date" id="declaration_date" name="declaration_date" required></div></div>
+            </fieldset>
+
+            <div class="form-actions-sticky"><button type="submit" id="preview-btn" class="btn btn-primary btn-large">Preview Document</button></div>
+        </form>
+    </div>
+</div>
+{% endblock content %}
+
+{% block extra_scripts %}
+<script src="{% static 'pboapp/js/generate_npc_cor9_1.js' %}"></script>
+{% endblock %}

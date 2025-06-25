@@ -2,6 +2,31 @@ document.addEventListener('DOMContentLoaded', () => {
     const checklistId = 'npcChecklistStatus'; // A unique key for this specific checklist
     const tasks = document.querySelectorAll('.checklist-item-card');
     const compileBtn = document.getElementById('compile-btn');
+    const profileKey = 'npcApplicationProfile';
+    const saveCipcBtn = document.getElementById('save-cipc-code-btn');
+    const cipcInput = document.getElementById('cipc-code-input');
+
+    // On page load, pre-fill the CIPC input if it exists in the profile
+    const profile = JSON.parse(localStorage.getItem(profileKey)) || {};
+    if (cipcInput && profile.cipcCode) {
+        cipcInput.value = profile.cipcCode;
+    }
+
+    if (saveCipcBtn) {
+        saveCipcBtn.addEventListener('click', () => {
+            const code = cipcInput.value.trim();
+            if (code) {
+                let currentProfile = JSON.parse(localStorage.getItem(profileKey)) || {};
+                currentProfile.cipcCode = code;
+                localStorage.setItem(profileKey, JSON.stringify(currentProfile));
+                
+                // Mark this specific task as complete
+                toggleTaskState('npc-cipc-code');
+                loadChecklistState(); // Reload to update UI
+                alert('CIPC Code Saved!');
+            }
+        });
+    }
 
     // --- Main Functions ---
 
@@ -75,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
             taskElement.classList.remove('is-complete');
             icon.textContent = 'radio_button_unchecked';
             if (actionLink) {
-                actionLink.textContent = 'Generate Your MOI'; // Or original text
+                actionLink.textContent = actionLink.dataset.originalText;
                 actionLink.href = actionLink.dataset.generatorUrl;
             }
         }

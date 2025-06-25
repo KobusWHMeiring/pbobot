@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Notice of Incorporation (CoR 14.1) Generator - PBOBot{% endblock title %}
+
+{% block page_specific_css %}
+{# We can reuse the same professional form styling from the MOI generator #}
+<link rel="stylesheet" href="{% static 'pboapp/css/generator_form.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="content-wrapper">
+    <div class="form-card">
+        <h1 class="form-title">Notice of Incorporation (CoR 14.1) Generator</h1>
+        <p class="form-description">Complete the details for your company's incorporation. Fields are based on the official CIPC form.</p>
+        
+        <form id="cor14-1-form" novalidate data-preview-url="{% url 'pboapp:preview_npc_cor14_1' %}"> {# Add preview URL later #}
+            
+            <fieldset class="form-section">
+                <legend>Incorporator Details</legend>
+                <div class="form-group">
+                    <label for="customer_code">CIPC Customer Code:</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="customer_code" name="customer_code" placeholder="Your CIPC customer code (if available)">
+                    </div>
+                </div>
+                <p class="form-description" style="margin-bottom: 1.5rem; text-align: left;">List all incorporators. The details should match those on the Memorandum of Incorporation.</p>
+                <div id="incorporators-container">
+                    <!-- JS will populate this -->
+                </div>
+                <button type="button" id="add-incorporator-btn" class="btn btn-secondary">
+                    <span class="material-icons-outlined">add_circle_outline</span>
+                    Add Another Incorporator
+                </button>
+            </fieldset>
+
+            <fieldset class="form-section">
+                <legend>1. Company Type</legend>
+                 <div class="form-group textarea-group">
+                    <label>Juristic Person Type:</label>
+                    <div class="input-wrapper radio-group">
+                        <div class="radio-option"><input type="radio" id="type_soc" name="company_type" value="soc"><label for="type_soc">State Owned Company</label></div>
+                        <div class="radio-option"><input type="radio" id="type_plc" name="company_type" value="plc"><label for="type_plc">Personal Liability Company</label></div>
+                        <div class="radio-option"><input type="radio" id="type_npc" name="company_type" value="npc" checked><label for="type_npc">Non Profit Company</label></div>
+                        <div class="radio-option"><input type="radio" id="type_pub" name="company_type" value="pub"><label for="type_pub">Public Company</label></div>
+                        <div class="radio-option"><input type="radio" id="type_pvt" name="company_type" value="pvt"><label for="type_pvt">Private Company</label></div>
+                    </div>
+                 </div>
+            </fieldset>
+
+            <fieldset class="form-section">
+                <legend>2-5. Company Details</legend>
+                <div class="form-group textarea-group">
+                    <label for="effective_date_option">2. Incorporation takes effect on:</label>
+                    <div class="input-wrapper radio-group">
+                        <div class="radio-option"><input type="radio" id="eff_date_cert" name="effective_date_option" value="certificate" checked><label for="eff_date_cert">The date of the registration certificate is issued</label></div>
+                        <div class="radio-option"><input type="radio" id="eff_date_later" name="effective_date_option" value="later"><label for="eff_date_later">A later date:</label> <input type="date" id="later_date" name="later_date" style="margin-left: 10px;"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="financial_year_end">3. Company's first financial year will end on:</label>
+                    <div class="input-wrapper">
+                        <input type="date" id="financial_year_end" name="financial_year_end" required>
+                    </div>
+                </div>
+                <div class="form-group textarea-group">
+                    <label for="registered_address">4. Company's registered office address:</label>
+                    <div class="input-wrapper">
+                        <textarea id="registered_address" name="registered_address" rows="4" required placeholder="Street Address, Suburb, City, Postal Code"></textarea>
+                    </div>
+                </div>
+                 <div class="form-group">
+                    <label for="director_count">5. Number of initial directors:</label>
+                    <div class="input-wrapper">
+                        <input type="number" id="director_count" name="director_count" required min="3" value="3">
+                        <small>As listed in Annexure A. For an NPC, this must be at least 3.</small>
+                    </div>
+                </div>
+            </fieldset>
+            
+            <fieldset class="form-section">
+                <legend>6-7. Name and MOI</legend>
+                <div class="form-group textarea-group">
+                    <label>6. The company name is to be:</label>
+                    <div class="input-wrapper radio-group">
+                         <div class="radio-option"><input type="radio" id="name_reg_num" name="name_option" value="reg_num"><label for="name_reg_num">The company's registration number</label></div>
+                         <div class="radio-option"><input type="radio" id="name_reserved" name="name_option" value="reserved" checked><label for="name_reserved">The name currently reserved under #</label> <input type="text" name="reservation_number" placeholder="Name Reservation #" style="margin-left: 10px;"></div>
+                         <div class="radio-option"><input type="radio" id="name_annex_b" name="name_option" value="annex_b"><label for="name_annex_b">The first of the names set out on Annexure B</label></div>
+                    </div>
+                </div>
+                <div class="form-group textarea-group">
+                    <label>7. Memorandum of Incorporation:</label>
+                    <div class="input-wrapper">
+                        <span>Attached in Form CoR <input type="text" name="moi_form_number" value="15.1C" style="width: 80px; display: inline-block;"></span>
+                        <div class="radio-group" style="margin-top: 1rem;">
+                            <div class="radio-option"><input type="radio" id="moi_no_prov" name="moi_provision" value="no_provision" checked><label for="moi_no_prov">has no provision of the type contemplated in section 15 (2) (b) or (c).</label></div>
+                            <div class="radio-option"><input type="radio" id="moi_has_prov" name="moi_provision" value="has_provision"><label for="moi_has_prov">has provisions of the type contemplated in section 15 (2) (b) or (c), as listed in Annexure C.</label></div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- Sticky Footer for Action Button -->
+            <div class="form-actions-sticky">
+                <button type="submit" id="preview-btn" class="btn btn-primary btn-large">
+                    Preview Document
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Template for a single incorporator (same pattern as MOI) -->
+<template id="incorporator-template">
+    <div class="incorporator-card">
+        <div class="incorporator-header">
+            <h3 class="incorporator-title">Incorporator</h3>
+            <button type="button" class="remove-incorporator-btn" title="Remove Incorporator">
+                <span class="material-icons-outlined">delete</span>
+            </button>
+        </div>
+        <div class="form-group">
+            <label>Name:</label>
+            <div class="input-wrapper"><input type="text" name="incorporator_name" required></div>
+        </div>
+        <div class="form-group textarea-group">
+            <label>Address:</label>
+            <div class="input-wrapper"><textarea name="incorporator_address" rows="3" required></textarea></div>
+        </div>
+        <div class="form-group">
+            <label>Identity/Reg No:</label>
+            <div class="input-wrapper"><input type="text" name="incorporator_id" required></div>
+        </div>
+    </div>
+</template>
+{% endblock content %}
+
+{% block extra_scripts %}
+{# Link to a new JS file for this form's logic #}
+<script src="{% static 'pboapp/js/generate_npc_cor14_1.js' %}"></script>
+{% endblock %}

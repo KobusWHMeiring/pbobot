@@ -3,6 +3,11 @@
 
 {% block title %}MOI Generator (CoR 15.1C) - PBOBot{% endblock title %}
 
+{% block page_specific_css %}
+{# Link to the dedicated stylesheet for this form #}
+<link rel="stylesheet" href="{% static 'pboapp/css/generator_form.css' %}">
+{% endblock %}
+
 {% block content %}
 <div class="content-wrapper">
     <div class="form-card">
@@ -15,13 +20,17 @@
                 <legend>Company Details</legend>
                 <div class="form-group">
                     <label for="company_name">Company Name (as per name reservation):</label>
-                    <input type="text" id="company_name" name="company_name" required placeholder="e.g., The Good Hope Foundation NPC">
-                    <small>Must end with "NPC".</small>
+                    <div class="input-wrapper inline-help">
+                        <input type="text" id="company_name" name="company_name" required placeholder="e.g., The Good Hope Foundation NPC">
+                        <small>Must end with "NPC".</small>
+                    </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group textarea-group">
                     <label for="company_objects">Objects of the Company:</label>
-                    <textarea id="company_objects" name="company_objects" rows="6" required placeholder="Describe the main purpose and activities of the non-profit company."></textarea>
-                    <small>This is a statement of the public benefit objectives of your NPC.</small>
+                    <div class="input-wrapper">
+                         <textarea id="company_objects" name="company_objects" rows="5" required placeholder="Describe the main purpose and activities of the non-profit company."></textarea>
+                         <small>This is a statement of the public benefit objectives of your NPC.</small>
+                    </div>
                 </div>
             </fieldset>
 
@@ -29,23 +38,29 @@
                 <legend>Directors</legend>
                 <div class="form-group">
                     <label for="director_count">Number of Directors:</label>
-                    <input type="number" id="director_count" name="director_count" required min="3" value="3">
-                    <small>An NPC must have at least 3 directors.</small>
+                    <div class="input-wrapper inline-help">
+                        <input type="number" id="director_count" name="director_count" required min="3" value="3">
+                        <small>An NPC must have at least 3 directors.</small>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="alternate_director_count">Number of Alternate Directors:</label>
-                    <input type="number" id="alternate_director_count" name="alternate_director_count" required min="0" value="0">
+                    <div class="input-wrapper">
+                        <input type="number" id="alternate_director_count" name="alternate_director_count" required min="0" value="0">
+                    </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group textarea-group">
                     <label for="director_appointment_manner">Manner of Director Appointment:</label>
-                    <textarea id="director_appointment_manner" name="director_appointment_manner" rows="4" required>Initial directors are the incorporators listed below. Subsequent directors will be appointed by a majority vote of the Board of Directors.</textarea>
-                    <small>Describe how directors are appointed. The default text is usually sufficient.</small>
+                    <div class="input-wrapper">
+                        <textarea id="director_appointment_manner" name="director_appointment_manner" rows="4" required>Initial directors are the incorporators listed below. Subsequent directors will be appointed by a majority vote of the Board of Directors.</textarea>
+                        <small>Describe how directors are appointed. The default text is usually sufficient.</small>
+                    </div>
                 </div>
             </fieldset>
 
             <fieldset class="form-section">
                 <legend>Adoption by Incorporators</legend>
-                <p class="form-description">Add the details for each of the founding incorporators. The signature fields will be left blank on the document for manual signing.</p>
+                <p class="form-description" style="margin-bottom: 1.5rem; text-align: left;">Add the details for each of the founding incorporators. The signature fields will be left blank on the document for manual signing.</p>
                 <div id="incorporators-container">
                     <!-- JavaScript will populate the initial 3 incorporators here -->
                 </div>
@@ -70,22 +85,29 @@
 <template id="incorporator-template">
     <div class="incorporator-card">
         <div class="incorporator-header">
-            <h3 class="incorporator-title">Incorporator</h3>
-            <button type="button" class="remove-incorporator-btn">
+             <h3 class="incorporator-title">Incorporator</h3>
+             <button type="button" class="remove-incorporator-btn" title="Remove Incorporator">
                 <span class="material-icons-outlined">delete</span>
-            </button>
+             </button>
         </div>
-        <div class="form-group">
+       
+        <div class="form-group textarea-group">
             <label for="incorporator_name_address">Full Name and Address:</label>
-            <textarea name="incorporator_name_address" rows="3" required placeholder="John Doe, 123 Main St, Cape Town, 8001"></textarea>
+            <div class="input-wrapper">
+                <textarea name="incorporator_name_address" rows="3" required placeholder="John Doe, 123 Main St, Cape Town, 8001"></textarea>
+            </div>
         </div>
         <div class="form-group">
             <label for="incorporator_id">Identity or Registration #:</label>
-            <input type="text" name="incorporator_id" required placeholder="South African ID Number">
+            <div class="input-wrapper">
+                 <input type="text" name="incorporator_id" required placeholder="South African ID Number">
+            </div>
         </div>
         <div class="form-group">
             <label for="incorporator_date">Date of Signing:</label>
-            <input type="date" name="incorporator_date" required>
+            <div class="input-wrapper">
+                 <input type="date" name="incorporator_date" required>
+            </div>
         </div>
     </div>
 </template>

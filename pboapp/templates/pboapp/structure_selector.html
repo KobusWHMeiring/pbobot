@@ -4,11 +4,10 @@
 {% block title %}NPO Structure Selector - PBOBot{% endblock title %}
 
 {% block page_specific_css %}
-    <link rel="stylesheet" href="{% static 'pboapp/css/structure_selector.css' %}">
+<link rel="stylesheet" href="{% static 'pboapp/css/structure_selector.css' %}">
 {% endblock %}
-
 {% block content %}
-<div class="content-wrapper">
+<section class="tool-page-section">
 
     <!-- Screen 1: Explainer -->
     <div id="explainer-screen" class="tool-container">
@@ -18,17 +17,14 @@
         </div>
         
         <div class="info-grid">
-            <!-- Info Card 1 -->
             <div class="info-card">
                 <h3 class="info-card-heading">Non-Profit Company (NPC)</h3>
                 <p class="info-card-description">A formal legal entity registered with CIPC. It offers the strongest liability protection for its directors and is often preferred by formal funders and for signing contracts.</p>
             </div>
-            <!-- Info Card 2 -->
             <div class="info-card">
                 <h3 class="info-card-heading">Charitable Trust</h3>
                 <p class="info-card-description">A legal structure for managing long-term assets like property or investments. It is registered with the Master of the High Court and managed by trustees.</p>
             </div>
-            <!-- Info Card 3 -->
             <div class="info-card">
                 <h3 class="info-card-heading">Voluntary Association (VA)</h3>
                 <p class="info-card-description">The simplest, most flexible structure based on a constitution signed by members. It's fast to set up and ideal for community-based or member-driven initiatives.</p>
@@ -36,12 +32,12 @@
         </div>
 
         <div class="explainer-cta-wrapper">
-            <button id="proceed-to-qualifier-button" class="btn-primary-style">Start the Selector</button>
+            <button id="proceed-to-qualifier-button" class="btn btn-primary btn-large">Start the Selector</button>
         </div>
     </div>
 
     <!-- Screen 2: Qualifier -->
-    <div id="qualifier-screen" style="display: none;">
+    <div id="qualifier-screen" class="tool-container" style="display: none;">
         <div class="qualifier-form-container">
             <div class="qualifier-header">
                 <h1 class="qualifier-title">Structure Selector Tool</h1>
@@ -111,14 +107,14 @@
                 </div>
                 
                 <div class="form-actions">
-                    <button type="submit" class="btn-primary-style">Get Recommendation</button>
+                    <button type="submit" class="btn btn-primary btn-large">Get Recommendation</button>
                 </div>
             </form>
         </div>
     </div>
 
     <!-- Screen 3: Results -->
-    <div id="results-screen" style="display: none;">
+    <div id="results-screen" class="tool-container" style="display: none;">
         <div class="results-container-new">
             <!-- Header Section -->
             <div class="results-header">

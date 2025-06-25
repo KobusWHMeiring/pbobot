@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Preview Notice of Incorporation (CoR 14.1) - PBOBot{% endblock title %}
+
+{% block page_specific_css %}
+    {# We will reuse preview.css and add styles to it if needed #}
+    <link rel="stylesheet" href="{% static 'pboapp/css/preview.css' %}">
+    <link rel="stylesheet" media="print" href="{% static 'pboapp/css/print.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="preview-page-wrapper">
+    <!-- Action Bar (Hidden on Print) -->
+    <div id="preview-action-bar" class="preview-actions">
+        <button id="edit-btn" class="btn btn-secondary"><span class="material-icons-outlined">edit</span> Back to Edit</button>
+        <button id="print-btn" class="btn btn-secondary"><span class="material-icons-outlined">print</span> Print Document</button>
+        <button id="confirm-btn" class="btn btn-primary" data-checklist-url="#"> {# Add URL later #}
+            <span class="material-icons-outlined">check_circle</span> Confirm & Return to Checklist
+        </button>
+    </div>
+
+    <!-- This container holds the A4 page -->
+    <div id="document-container">
+        <div class="a4-page">
+            <header class="doc-header-main">
+                <h2>Companies and Intellectual Property Commission</h2>
+                <h3>Republic of South Africa</h3>
+                <div class="doc-title-separator"></div>
+                <h1>Notice of Incorporation</h1>
+            </header>
+
+            <div class="cor14-1-grid">
+                <!-- === LEFT SIDEBAR === -->
+                <aside class="sidebar cor14-1-sidebar">
+                    <div class="sidebar-title-box">
+                        Form CoR 14.1
+                    </div>
+                    <ul>
+                        <li>This form is issued in terms of section 13 of the Companies Act, 2008, and Regulation 14 of the Companies Regulations, 2011.</li>
+                        <li>A profit company may be incorporated by an organ of state, or by one or more persons. A non-profit company may be incorporated by an organ of state, a juristic person, or by three or more persons.</li>
+                        <li>To each of paragraphs 1, 2, 3, 6 and 7, you must select one option, by ticking the appropriate box.</li>
+                        <li>Annexure A must be completed and attached.</li>
+                        <li>Annexure B is required only if you tick the 3rd option at paragraph 6.</li>
+                        <li>Annexure C is required only if you tick the 2nd option at paragraph 7.</li>
+                        <li>The basic filing fee is R175 if the company's Memorandum of Incorporation is in Form 15.1A or 15.1C, or R475 in any other case.</li>
+                        <li>An MOI in Form CoR 15.1A, 15.1B, 15.1C, 15.1D or 15.1E or unique to the company must be attached.</li>
+                        <li>A company is not registered until the Commission has issued a Registration Certificate in Form CoR 14.3.</li>
+                    </ul>
+                    <div class="contact-box-14-1">
+                        <h4>Contacting the Commission</h4>
+                        <p>The Companies and Intellectual Property Commission of South Africa</p>
+                        <p><strong>Postal Address</strong><br>PO Box 429<br>Pretoria, 0001<br>Republic of South Africa<br>Tel: 086 100 2472</p>
+                        <p>www.cipc.co.za</p>
+                    </div>
+                </aside>
+
+                <!-- === RIGHT MAIN CONTENT === -->
+                <main class="main-content">
+                    <div class="form-row">
+                        <label>Customer Code:</label>
+                        <div class="form-line" id="preview-customer-code">[Customer Code]</div>
+                    </div>
+
+                    <div class="incorporator-box">
+                        <label>From:</label>
+                        <small>(Name, address and identity or registration number of Incorporator)</small>
+                        <small>(If there are multiple incorporators, each must be listed. Use a separate sheet :)</small>
+                        
+                        <div class="form-row multi-line">
+                            <label>Name:</label>
+                            <div class="form-line" id="preview-inc-name">[Incorporator Name]</div>
+                        </div>
+                        <div class="form-row multi-line">
+                            <label>Address:</label>
+                            <div class="form-line" id="preview-inc-address">[Incorporator Address]</div>
+                        </div>
+                        <div class="form-row multi-line">
+                            <label>Identity/Reg No:</label>
+                            <div class="form-line" id="preview-inc-id">[Incorporator ID]</div>
+                        </div>
+                    </div>
+                    
+                    <section class="form-section-14-1">
+                        <p><strong>1. The incorporators have incorporated a juristic person to be registered as a:</strong></p>
+                        <div class="checkbox-grid">
+                            <div><span class="checkbox-placeholder" id="check-type-soc"></span> State Owned Company</div>
+                            <div><span class="checkbox-placeholder" id="check-type-pub"></span> Public Company</div>
+                            <div><span class="checkbox-placeholder" id="check-type-plc"></span> Personal Liability Company</div>
+                            <div><span class="checkbox-placeholder" id="check-type-pvt"></span> Private Company</div>
+                            <div><span class="checkbox-placeholder" id="check-type-npc"></span> Non Profit Company</div>
+                        </div>
+
+                        <p><strong>2. The incorporation of the company is to take effect on</strong></p>
+                        <div><span class="checkbox-placeholder" id="check-eff-date-cert"></span> The date of the registration certificate is issued</div>
+                        <div><span class="checkbox-placeholder" id="check-eff-date-later"></span> <span class="form-line-inline" id="preview-later-date">[Later Date]</span>, if later than the registration date.</div>
+
+                        <div class="form-row"><strong>3. The company's first financial year will end on</strong><div class="form-line" id="preview-financial-year-end">[FY End Date]</div></div>
+                        <div class="form-row"><strong>4. The company's registered office address is</strong><div class="form-line" id="preview-registered-address">[Registered Address]</div></div>
+                        <div class="form-row"><strong>5. There are</strong><div class="form-line-inline short" id="preview-director-count">[#]</div><strong>initial directors of the company, as listed in Annexure A.</strong></div>
+
+                        <p><strong>6. The company name is to be:</strong></p>
+                        <div><span class="checkbox-placeholder" id="check-name-reg-num"></span> The company's registration number, followed by the elements required by section 11 (3).</div>
+                        <div><span class="checkbox-placeholder" id="check-name-reserved"></span> The name currently reserved or registered under #<span class="form-line-inline" id="preview-reservation-number">[Reservation #]</span> for use by <span class="form-line-inline" id="preview-reserved-for">[Reserved For]</span></div>
+                        <div><span class="checkbox-placeholder" id="check-name-annex-b"></span> The first of the names set out on annexure B that proves to be eligible...</div>
+
+                        <p><strong>7. The company's Memorandum of Incorporation, attached in Form CoR</strong><span class="form-line-inline short" id="preview-moi-form-number">[15.1C]</span> or unique <span class="checkbox-placeholder" id="check-moi-unique"></span></p>
+                        <div><span class="checkbox-placeholder" id="check-moi-no-prov"></span> has no provision of the type contemplated in section 15 (2) (b) or (c).</div>
+                        <div><span class="checkbox-placeholder" id="check-moi-has-prov"></span> has provisions of the type contemplated in section 15 (2) (b) or (c), as listed in Annexure C.</div>
+                    </section>
+
+                    <div class="declaration-box">
+                        <p><strong>I declare that the information in this application is true. If I am not the applicant, I declare that the Applicant has authorised me to make this application.</strong></p>
+                        <div class="signature-grid">
+                            <div><label>Signature</label><div class="signature-line"></div></div>
+                            <div><label>Date</label><div class="signature-line" id="preview-declaration-date">[Date]</div></div>
+                        </div>
+                    </div>
+
+                    <div class="commission-box">
+                        <div class="box-title">For Commission Use only</div>
+                        <div class="signature-grid">
+                            <div><label>Commission file number:</label><div class="signature-line"></div></div>
+                            <div><label>Date filed:</label><div class="signature-line"></div></div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+            <footer class="doc-footer-14-1">This form is prescribed by the Minister of Trade and Industry in terms of section 223 of the Companies Act, 2008 (Act No. 71 of 2008).</footer>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block extra_scripts %}
+<script src="{% static 'pboapp/js/preview_npc_cor14_1.js' %}"></script>
+{% endblock %}
